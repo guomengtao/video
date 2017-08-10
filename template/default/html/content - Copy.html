@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{playpage:name}在线播放-{playpage:typename}-{maxcms:sitename}</title>
+<meta name="keywords" content="{playpage:name}免费在线观看,{playpage:name}剧情介绍,{playpage:name}电影海报" />
+<meta name="description" content="{playpage:name}剧情:{playpage:des len=50}" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}';</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:top}
+<div class="content_zleft">
+  <!--左边 开始-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/new.html">更多&gt;&gt;</a></SPAN>最近更新{playpage:typename}</H2>
+	<UL>
+	  {maxcms:videolist num=21 order=time type=current}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <!--左边 结束-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}rank.html">更多&gt;&gt;</a></SPAN>{playpage:typename}本月点播排行</H2>
+	<UL>
+	  {maxcms:videolist num=21 order=hit time=month type=current}
+	  <li><span><font color="red">[videolist:hit]℃</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+<!--右边 开始-->
+<DIV class=layout_newlist>
+  <DIV class=tit>
+	<H4><SPAN>当前位置:</SPAN>{playpage:textlink}</H4></DIV>
+  <div id="content_jr" style="margin:0;">
+	<DIV class="info">
+	  <DIV class="pic"><img width="201" height="300" src="{playpage:pic}" alt="{playpage:name}" /></DIV>
+	  <DIV class="wenzi">
+		<DIV class="webzi_top">
+		  <UL>
+			<li>
+			  <h3>{playpage:name}</h3>
+			  <span id="hit">{playpage:hit}</span>℃</li>
+			<LI>影片状态：<SPAN style="COLOR: red"><font color="blus">{playpage:note}</font></a></SPAN></LI>
+			<LI>影片主演：{playpage:actor}</LI>
+			<LI>影片类型：{playpage:typename}</LI>
+			<LI>影片地区：{playpage:publisharea}</LI>
+			<LI>更新时间：{playpage:addtime}</LI>
+			<LI>下载影片：<a href="http://www.vunion.net/xunlei?wd={playpage:encodename}" class="red1" target="_blank">迅雷下载</a>　<a href="http://www.vunion.net/baidu?wd={playpage:encodename}" target="_blank" class="red1">百度下载</a></LI>
+		  </UL>
+		</DIV>
+		<DIV class="pingfen">
+		{playpage:mark len=10}
+		</DIV>
+	  </DIV>
+	</DIV>
+  </div>
+  
+  {playpage:playlist}
+  <div id="content_jr">
+	<div class="content_jrtop">
+	  <li style="background:url(images/index_67.jpg) no-repeat;"><span>[playlist:from]点播列表([playlist:intro])</span></li>
+	</div>
+	<div class="videourl"> [playlist:link] </div>
+  </div>
+  {/playpage:playlist}
+	{playpage:downlist}
+ 
+
+{/playpage:downlist}
+
+<video  width="100%" height="240" controls="controls" loop="loop" poster="{playpage:pic}">
+ 
+  <source src="{playpage:note}" type="video/mp4" />
+Your brows
+</video>
+下载地址： {playpage:note}
+ 视频图片：{playpage:pic}
+  <div class="ad696-90">
+
+<!--内容页右侧广告1-->
+<script type="text/javascript" src="http://u.maxcms.co/playad/mbad69690.js"></script>
+
+</div>
+  <div id="urlwrap">
+	<div id="content_jr">
+	  <div class="content_jrtop">
+		<li style="background:url(images/index_67.jpg) no-repeat;"><span>{playpage:name}-影片简介</span></li>
+	  </div>
+	  <div id="idDIV"> {playpage:des} </div>
+	</div>
+  </div>
+  <div id="content_jr">
+	<div class="content_jrtop">
+	  <li style="background:url(images/index_67.jpg) no-repeat;"><span>影片评论</span></li>
+	</div>
+	<div class="videocomment">
+		{playpage:comment}
+	</div>
+  </div>
+</DIV>
+<!--右边 结束-->
+</div>
+{maxcms:foot}
+
+</body>
+</html>

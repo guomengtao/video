@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{maxcms:newssearchword}_{maxcms:sitename}</title>
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:load head_news.html}
+<div class="wrap">
+  <div class="content_zleft">
+	<div class="layout_left">
+	  <H2><SPAN></SPAN>最新资讯</H2>
+	  <ul>
+		{maxcms:newslist num=26 order=time type=all}
+		<li><span><font color="red">[newslist:time style=mm-dd]</font></span>
+		  <div class="title"><a href="[newslist:link]" title="[newslist:name]">[newslist:colorname len=15]</a></div>
+		</li>
+		{/maxcms:newslist}
+	  </ul>
+	</div>
+	</div>
+	<div class="layout_newlist">
+	<div class="tit">
+		   <H4>搜索新闻 {maxcms:newssearchword} 共 {maxcms:newssearchnum} 条</H4></div>
+		  <div class="newslist">
+			<ul>
+			  {maxcms:newssearchlist size=10}
+			  <li><a href="[newssearchlist:link]" class="newimg"><img src="[newssearchlist:pic]"></a>
+			  <a href="[newssearchlist:link]" class="titl">[newssearchlist:colorname] <font color="red">[newssearchlist:note]</font></a>
+			  <span>日期：[newssearchlist:time] 点击：[newssearchlist:hit] 好评：[newssearchlist:digg] </span>
+			  <p>[newssearchlist:des len=100]</p>
+			  
+			  </li>
+			  {/maxcms:newssearchlist}
+			</ul>
+			<div class="page"> [newssearchlist:pagenumber len=8] </div>
+		  </div>
+	</div>
+</div>
+{maxcms:foot}
+</body>
+</html>

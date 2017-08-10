@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Rebuild_ViewPage</title>
+<link type="text/css" rel="stylesheet" href="images/style.css" />
+<script type="text/javascript">
+var param = function(){
+	var getparam = function(item,rep){var res=location.search.match(new RegExp("[\?\&]"+item+"=([^\&]*)(\&?)","i"));return res?res[1]:rep;};
+	return {"gid":getparam("id",0),"type":getparam("type",0),"style":getparam("style",0),"gname":getparam("title","").replace(/</ig,'&lt;').replace(/>/ig,'&gt;'),"page":getparam("page",1),"allowup":getparam("up",0)};
+}();
+if(param.style)document.write('<link href="images/css/'+ style +'.css" rel="stylesheet" type="text/css" />');
+</script>
+</head>
+<body oncontextmenu="//return false" oncopy="//document.selection.empty()" onbeforecopy="//return false">
+<div id="header">
+	<h1><span id="tit"></span><a href="#cmt">我要发言</a></h1>
+	<h2><span>网站小编</span>： 喜欢本站的话请大家把本站告诉给你朋友哦！地址是 <script>document.write(document.domain.toUpperCase())</script> ！</h2>
+</div>
+<div id="comment"></div>
+<div class="footer">
+	<h5><a name="cmt"></a>发表评论&nbsp;<span style="display:none">本站为防止低俗内容出现，用户发表的评论需本站审核后才能显示出来</span></h5>
+	<div id="talk">
+		<div id="uploadpic"></div>
+		<div id="face"><img src="images/cmt/1.gif" /><img src="images/cmt/2.gif" /><img src="images/cmt/3.gif" /><img src="images/cmt/4.gif" /><img src="images/cmt/5.gif" /><img src="images/cmt/6.gif" /><img src="images/cmt/7.gif" /><img src="images/cmt/8.gif" /><img src="images/cmt/9.gif" /><img src="images/cmt/10.gif" /><img src="images/cmt/11.gif" /><img src="images/cmt/12.gif" /><img src="images/cmt/13.gif" /><img src="images/cmt/14.gif" /><img src="images/cmt/15.gif" /><img src="images/cmt/16.gif" /><img src="images/cmt/17.gif" /><img src="images/cmt/18.gif" /><img src="images/cmt/19.gif" /><img src="images/cmt/20.gif" /></div>
+		<div id="cancel"></div>
+		<form name="form2" id="form2" action="api/send.asp?action=1" method="post" target="myiframe">
+			<input type="hidden" name="ctype" id="ctype" value="1" />
+			<input type="hidden" name="cparent" id="cparent" value="0" />
+			<input type="hidden" name="gid" id="gid" value="0" />
+			<input type="hidden" name="uid" id="uid" value="0" />
+			<input type="hidden" name="uname" id="uname" value="" />
+			<input type="hidden" name="unick" id="unick" value="" />
+			<input type="hidden" name="utmpname" id="utmpname" value="" />
+			<input type="hidden" name="ppath" id="ppath" value="" />
+			<input type="hidden" name="pvote" id="pvote" value="1" />
+			<input type="hidden" name="anony" id="anony" value="0" />
+			<input type="hidden" name="captcha" id="captcha" value="" />
+			<div class="tc"><textarea name="talkwhat" id="talkwhat"></textarea></div>
+		</form>
+		<div class="captcha">验证码：<input type="text" name="gcaptcha" id="gcaptcha" onfocus="getcaptcha();"/>&nbsp;<div id="getcode"><a href="#cmt" onclick="return getcaptcha();"><span id="codeimg"></span> 看不清？</a></div>&nbsp;请点击后输入四位验证码，字母不区分大小写 [Ctrl+Enter]键快速回复</div>
+		<div class="btn"><input type="button" name="submit1" id="submit1" value=" 发表评论 " onclick="submitform();" style="*padding-top:2px;cursor:pointer;"/>&nbsp;&nbsp;<input type="checkbox" name="anonymous" id="anonymous" value="1"/><label for="anony" id="anonylabel">匿名</label></div>
+		<iframe name="myiframe" id="myiframe" frameborder="0" marginheight="0" marginwidth="0" width="1" height="1" src="about:blank" scrolling="yes"></iframe>
+	</div>
+	<div class="isad">
+	</div>
+	<div class="clean"></div>
+</div>
+<script type="text/javascript" src="js/base.js"></script>
+</body>
+</html>

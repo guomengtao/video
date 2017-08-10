@@ -1,0 +1,36 @@
+/* BY QQ 8314806 haocms.taobao.com EDIT  */
+body { margin:0; padding:0; font-size:12px; background-color:#000111; color:#fff;font-style: normal;font-weight: normal;}
+div,ul,ol,li,dl,dd,dt,p,h1,h2,h3,h4,h5,form,input,button,select,a,textarea { margin:0; padding:0;}
+li { list-style-type:none;}
+input,a { outline:none;}
+img { border-width:0; vertical-align:top;}
+a{ blr:expression(this.onFocus=this.blur()); /* IE Opera */ outline:none; /* FF Opera */ } a:focus{ -moz-outline-style: none; /* FF */ } 
+a:link, a:visited { color:#666; text-decoration:none;}
+a:hover, a:active { color:#fff; text-decoration:none;}
+
+.time { width:200px;}
+.time li {float:left; text-align:center; display:inline; width:100px; overflow:hidden;}
+
+#pbox { overflow:hidden;}
+#plist { float:left; display:none; overflow-y:scroll; width:200px; scrollbar-face-color: #333; scrollbar-shadow-color: #000; scrollbar-highlight-color: #202020; scrollbar-3dlight-color: #202020; scrollbar-darkshadow-color:#202020; scrollbar-track-color: #111; scrollbar-arrow-color: #666;}
+#video { float:left; overflow:hidden;}
+
+
+#tbox { width:100%; height:29px; border-bottom:1px solid #202020; overflow:hidden; line-height:29px; font-size:14px; font-weight:bold;}
+#tbox div { float:left; width:auto; overflow:hidden; width:140px; text-align:center;border-left:1px solid #202020;}
+#gurl span { color:#333; overflow:hidden;}
+
+#plist .tit { height:40px; border-bottom:1px solid #202020; line-height:40px; color:#999; font-size:14px; font-weight:bold; text-align:left;}
+#plist .tit a:link, #plist .tit a:visited { color:#FFF;}
+#plist .tit a:hover, #plist .tit a:active { color:#ff3366;}
+#plist .tthis a:link, #plist .tthis a:visited { color:#ff3366; font-weight:bold;}
+#plist .tthis a:hover, #plist .tthis a:active { color:#ff3366;}
+#plist .tit a { display:block; width:100%; height:100%;}
+#plist .list { width: 100%; clear:both; overflow:hidden; zoom:1;}
+#plist .list li { width:100%; line-height:24px; height:26px; text-align:center; float:left; border:1px solid #202020; background:#111;}
+#plist .list li a { display:block; width:100%; height:100%; overflow:hidden;}
+#plist .list li a:link, #plist .list li a:visited { color:#666; text-decoration:none; font-size:14px;}
+#plist .list li a:hover, #plist .list li a:active { color:#fff; background-color:#000; font-size:14px; text-decoration: none;}
+#plist .list li.jthis a:link, #plist .list li.jthis a:visited { color:#fff; background-color:#ff3366; font-size:14px;}
+#plist .list li.jthis a:hover, #plist .list li.jthis a:active { background-color:#000; font-size:14px;}
+/* BY QQ 8314806 haocms.taobao.com EDIT  */

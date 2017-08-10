@@ -1,0 +1,20 @@
+.titlecbar{ position:relative;height:25px}
+	.titlecbar h3{font-size:12px;border-bottom:1px solid #ccc;background-color:#E9EDF1;width:100%;text-indent:12px;height:25px;line-height:25px;}
+	.titlecbar strong{ background-color:#d5eeff;width:100%;text-indent:12px;display:block;font-size:12px;height:28px;line-height:28px;}
+	.titlecbar span{display:block; position:absolute; width:24px;height:12px;left:20px; top:28px; background:no-repeat left -227px}
+	.titlecbar a{ position:absolute;right:0;top:0;float:right;padding:0 12px; border-left:1px solid white;height:28px;line-height:28px}
+.videocomment{ clear:both;margin-top:2px;border:1px solid #ccc;}
+#commentlist{padding:8px}
+	#commentlist ul{width:100%; overflow:hidden;background-color:#FCFCFC;border:1px solid #DDDDDD;margin-bottom:6px;padding:5px 0; margin:0;}
+	#commentlist li {line-height:21px;text-align:right;padding:0 5px}
+	#commentlist li span{float:left}
+	#commentlist li strong{color:#0066CC;font-weight:normal;}
+	#commentlist li.words {overflow:hidden;text-align:left;word-wrap:break-word;word-break:normal;margin:.5em 2em;color:#333;background-color:#F8FFF6;border: 1px solid #EBF2EA;}		
+.page {font-size:13px;text-align:right;overflow:hidden;text-align:center;}
+.is_on {font-size:20px;font-weight:bold;}
+#addform{margin:8px}
+	#addform p{ padding:2px 0}
+input#user{background-color:#FAFAD2;border:1px solid #DDDDDD;font-family:Verdana;height:18px;padding:3px 4px;width:160px;}
+#addform textarea {background-color:#FAFAD2;border:1px solid #DDDDDD;height:100px;overflow:auto;padding:3px 4px;width:580px;}
+#post_btn {background-color:#E5ECF5;font-size:14px;height:28px;width:120px;}
+.clear{clear:both;height:0;overflow:hidden;}

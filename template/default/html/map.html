@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>全部数据-{maxcms:sitename}</title>
+<meta name="keywords" content="全部数据-{maxcms:sitename}" />
+<meta name="description" content="全部数据-{maxcms:sitename}" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:top}
+<div class="wrap">
+	<div class="main">		
+		{maxcms:arealist areatype=all}
+			<div class="combox">
+			<div class="border">
+			<h3><a href="[arealist:link]" class="more" >更多&gt;&gt;</a>[arealist:typename]([arealist:count])</h3>
+				<div class="maplist">
+				<ul>
+				{maxcms:videolist num=40 order=time type=areatype}
+				<li><a href="[videolist:link]" >{if: [videolist:state]>0}[videolist:name len=8]<font color="red">至第[videolist:state]集</font>{else}[videolist:name]{end if}</a></a></li>
+				 {/maxcms:videolist}			
+				</ul>
+				</div>
+			</div>
+		</div>
+{/maxcms:arealist}
+<div class="clear"></div>
+			
+	</div>
+	{maxcms:foot}
+</div>
+</body>
+</html>

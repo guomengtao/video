@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>播放器</title>
+<style>body{ margin:0; padding:0; background-color:#000;}</style>
+</head>
+<body>
+<script type="text/javascript" language="javascript">
+window.onerror = function(){return true;}
+var BdPlayer = new Array();
+BdPlayer['time'] = 1;
+BdPlayer['buffer'] = '';
+BdPlayer['pause'] = '';
+BdPlayer['end'] = '/js/loading.html';
+BdPlayer['width'] = "100%";
+BdPlayer['height'] = window.parent.pHeight-30;
+BdPlayer['url'] = window.parent.playurl;
+BdPlayer['nextcacheurl'] = window.parent.nextpurl;
+BdPlayer['lastwebpage'] = '';
+BdPlayer['nextwebpage'] = window.parent.nextlink;
+BdPlayer['showclient'] = 1;
+BdPlayer['tn'] = '10082018';
+</script>
+<script language="javascript" src="http://php.player.baidu.com/bdplayer/player.js" charset="utf-8"></script>
+</body>
+</html>

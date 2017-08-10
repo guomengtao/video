@@ -1,0 +1,1 @@
+document.writeln("<a href=\"http:\/\/bbs.bokecc.com\/forumdisplay.php?fid=97\" target=\"_blank\" class=\"imgfloat\"><img src=\"/"+sitePath+"template/default/images\/285-60.jpg\" \/><\/a>")

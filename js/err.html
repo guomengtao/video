@@ -1,0 +1,27 @@
+<html>
+    <head>
+    	<title>数据报错</title>
+        <script>
+			function checkReportErr(){if (document.getElementById('m_errauthor').value.length<1){alert('请填写报错者');return false;}; if (document.getElementById('m_errcontent').value.length<1){alert('请填写报错内容');return false;}}
+        </script>
+		<style>
+		h2,p{padding:0; margin:0;}
+		h2{font-size:14px;height:25px;color:#027DB9;line-height:25px;background:#B4E5FE;text-align:center;margin-bottom:10px;}
+		.err{width:380px;height:185px;background:#F5FBFE;border:1px solid #B0DCF5;margin: 0 auto}
+		.err p{margin-left:10px;} 
+		</style>
+    </head>
+    <body  style="font-size:12px;background-color:#D7EDFA;height:22px;line-height:22px;">
+        <form id="reporterr" action="../inc/ajax.asp?action=reporterr" method="post" onSubmit="return checkReportErr()">
+            <input type="hidden" name="errid" id="errid"  />
+            <div class="err">
+			<h2>失效数据，我们会在第一时间内修正</h2>
+               <p style="padding-bottom:5px;">报&nbsp;错&nbsp;者:<input type="text" id="m_errauthor" name="m_errauthor"  value="匿名"  size="15"><font color="#FF0000">*必填</font></p>
+			
+                <p>错误提示:<textarea id="m_errcontent"  name="m_errcontent" style="width:270px;height:88px" rows=5 cols=30></textarea>
+                <font color="#FF0000">*必填</font></p>
+                <input type="submit" value="数据报错" style="margin:5px 0 0 130px;">
+            </div>
+        </form>
+    </body>
+</html>

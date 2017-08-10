@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>正在播放 {playpage:name} {playpage:part}</title>
+<meta name="Keywords" content="{playpage:name}{playpage:part}免费在线观看,{playpage:name}剧情介绍,{playpage:name}数据海报" />
+<meta name="description" content="{playpage:name}{playpage:part}免费在线观看,{playpage:name}剧情介绍,{playpage:name}数据海报" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+<script>var sitePath='{maxcms:sitepath}';var play_vid='{playpage:id}';var xTitle='{playpage:name}';//play_vid变量:智能报错用到</script>
+<script src="/{maxcms:sitepath}player/play.js"></script>
+</head>
+<body>
+{maxcms:top}
+<div class="play_left">
+  <!--左边 开始-->
+<script type="text/javascript" src="http://u.maxcms.co/playad/mbad250250.js"></script>
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>{playpage:typename}本月热播排行</H2>
+	<UL>
+	  {maxcms:videolist num=21 order=hit time=month type=current}
+	  <li><span><font color="red">[videolist:hit]℃</span></font>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <!--左边 结束-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/commend.html">更多&gt;&gt;</a></SPAN>{playpage:typename}本月用户推荐排行</H2>
+	<UL>
+	  {maxcms:videolist num=21 order=digg time=month type=current}
+	  <li><span><font color="red">[videolist:hit]℃</span></font>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+<!--右边 开始-->
+<DIV class="play_right">
+  <DIV class=tit>
+	<H4><SPAN>当前位置:</SPAN>{playpage:textlink}</H4></DIV>
+  <div id="content_jr" style="margin:0;">
+	<div class="player">{playpage:playurlinfo}{playpage:player}</div>
+	<div class="playding">
+						<ul>
+							<li>{playpage:digg}</li>
+							<li>{playpage:tread}</li>
+							<li>{playpage:reporterr}</li>
+							<li><a onclick="addFavorite('http://{maxcms:siteurl}','{maxcms:sitename}');" href="javascript:void()">收 藏</a></li>
+						</ul>
+					</div>
+	
+  </div>
+<div class="ad696-90">
+
+<!--内容页左侧广告1-->
+<a href="http://www.maxcms.co/" target="_blank"><img src="images/696-90.jpg"></a>
+
+</div>
+</DIV>
+<!--右边 结束-->
+{maxcms:foot}
+</body>
+</html>

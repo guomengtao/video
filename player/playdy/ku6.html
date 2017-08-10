@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>播放器</title>
+<style>body{ margin:0; padding:0;}</style>
+</head>
+<body>
+<script type="text/javascript" language="javascript">
+var Url = window.parent.playurl;
+var Str = '<embed allowfullscreen="true" wmode="opaque" src="http://player.ku6cdn.com/default/out/pv201303201843.swf" id="mymovie" name="mymovie" quality="high" flashvars="deflogo=0&recommend=0&auto=1&adss=0&jump=0&so=0&bv=0&pv=0&cyc=0&tile=0&fu=1&adj=1&d=1&pl=0&vid='+Url+'&type=v&flag=hd" quality="high" bgcolor="#000" width="100%" height="'+(window.parent.pHeight-30)+' name="player" id="playerr" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
+document.write(Str);
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>新闻中心首页_{maxcms:sitename}</title>
+<meta name="keywords" content="新闻,时事,时政,国际,国内,社会,法治,聚焦,评论,文化,教育,新视点,深度,网评,专题,环球,传播,论坛,图片,军事,焦点,排行,环保,校园,法治,奇闻,真情" />
+<meta name="description" content="新闻中心是{maxcms:sitename}最重要的频道之一,24小时滚动报道国内、国际及社会新闻。每日编发新闻数以万计。包括即日的国内外不同类型的新闻与评论,人物专题,图库。" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+<script src="images/js/swfobject.js"></script>
+</head>
+<body>
+{maxcms:load head_news.html}
+<div class="wrap">
+  <div class="main">
+	<div class="self_left">
+	<DIV id="swfContent"></DIV>
+<SCRIPT type="text/javascript">
+	var xmlData="<list><item><img>images/01.jpg</img><url>http://www.maxcms.net/</url></item><item><img>images/02.jpg</img><url>http://bbs.bokecc.com/</url></item></list>";
+	var flashvars = {xmlData:xmlData};
+	var params = {menu:false,wmode:"opaque"};
+	var attributes = {};
+	swfobject.embedSWF("/{maxcms:sitepath}pic/flash.swf", "swfContent", "500", "260", "9","expressInstall.swf", flashvars, params, attributes);
+</SCRIPT></div>
+	<div class="self_right">
+	  <div class="border">
+		<h3>最新资讯</h3>
+		<div class="self_h"> {maxcms:newslist num=3 order=time type=all}
+		  <h2><a href="[newslist:link]" style="font-size:14px;color:blue">[newslist:name len=30]</a></h2>
+		  <p>[newslist:content len=150]</p>
+		  {/maxcms:newslist} </div>
+	  </div>
+	</div>
+  </div>
+  <div class="main">
+<div class="new_zleft">
+  <DIV class="new_left">
+	<H2>最新资讯</H2>
+	<ul>
+	  {maxcms:newslist num=26 type=all order=time}
+	  <li><span><font color="red">[newslist:time]</font></span>
+		<div class="title"><a href="[newslist:link]" target="_blank" title="[newslist:title]">[newslist:title]</a></div>
+	  </li>
+	  {/maxcms:newslist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <DIV class="new_left">
+	<H2>热点资讯</H2>
+	<ul>
+	  {maxcms:newslist num=25 order=hit type=all}
+	  <li><span><font color="red">[newslist:time]</font></span>
+		<div class="title"><a href="[newslist:link]" title="[newslist:title]">[newslist:title len=15]</a></div>
+	  </li>
+	  {/maxcms:newslist}
+	</ul>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+{maxcms:menulist by=news type=top}
+<DIV class="new_newlist">
+  <DIV class="tit">
+	<H4><SPAN><b>[menulist:typename]</b></SPAN></H4><SPAN><a href="[menulist:link]" target="_blank" class="more">更多&gt;&gt;</a></span>	</DIV>
+  <DIV id=div_1>
+	<DIV class="snbox"> 
+	  <UL>
+	  {maxcms:newslist num=10 order=time type=[menulist:typeid]}
+		<LI >
+		  <A href="[newslist:link]">[newslist:title]</A>
+		</LI>
+		{/maxcms:newslist} 
+	  </UL>
+	  </DIV>
+  </DIV>
+</DIV>
+{/maxcms:menulist}
+</div>
+  {maxcms:foot} </div>
+</body>
+</html>

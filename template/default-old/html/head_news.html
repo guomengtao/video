@@ -1,0 +1,50 @@
+<div id="container">
+<div id="ttl">
+  <div class="ttlr"> <a href="#" onClick="setHome(this,'http://{maxcms:siteurl}')">设为首页</a> | <a href="javascript:void(0)" onClick="addFavorite('http://{maxcms:siteurl}','{maxcms:sitename}');">加入收藏</a> | <a href="/{maxcms:sitepath}help.html">网站帮助</a> | <a href="/{maxcms:sitepath}gbook.asp" target="_blank">留言求片</a> | {maxcms:showhistory}</div>
+  <div class="ttll">欢迎访问:{maxcms:sitename}我们的发展离不开你们! </div>
+</div>
+<div id="news_nav">
+  <div class="logoNav">
+	<div class="logo"><a href="http://{maxcms:siteurl}"><img src="images/logo.jpg" /></a></div>
+	
+	<div class="search">
+	  <form name="formsearch" id="formsearch" action='/{maxcms:sitepath}so.asp' method="post"  target="_blank">
+		<div class="input">
+		  <input name="searchword" type="text" value="输入新闻关键词进行搜索" onClick="if(this.value=='输入新闻关键词进行搜索')this.value=''"  id="searchword"/>
+		</div>
+		<div class="imgbt">
+		  <input type="image" src="images/but1.gif" value=""/>
+		</div>
+	  </form>
+	  <span><a href="/{maxcms:sitepath}top/new.html" target="_blank" class="red">最新排行榜</a><a href="/{maxcms:sitepath}top/rank.html" target="_blank" class="red">热门排行榜</a><a href="/{maxcms:sitepath}top/commend.html" target="_blank" class="red">推荐排行榜</a></span>
+	</div>
+	<div class="vote">
+		<div class="key">热门：{maxcms:keywords}</div>
+	</div>
+	<div class="space"></div>
+  </div>
+  <div class="nav">
+	<ul>
+	 <li><span><a href="{maxcms:indexlink}">首　　页</a></span></li>
+	   <li class="sep"></li>
+	  {maxcms:menulist type=top} <li{if:[menulist:typeid]={maxcms:currenttypeid}} class="current"{end if}><a href="[menulist:link]">[menulist:typename]</a>
+	  </li>
+	  <li class="sep"></li>
+	  {/maxcms:menulist}
+	  <li><a href="{maxcms:topiclink}">专辑</a></li>
+	</ul>
+  </div>
+  <div class="newmenu">
+  <ul>
+ <li><a href="{maxcms:newslink}">资讯首页</a></li>
+  {maxcms:menulist by=news type=top}
+		<li><a href="[menulist:link]">[menulist:typename]</a></b></li>
+  {/maxcms:menulist}
+  </ul>
+  </div>
+</div>
+{maxcms:maxhistory width=960 height=170 num=10}
+<div class="ad960-90">
+<!--顶部广告1960-90-->
+<img src="images/960-90.jpg">
+</div>

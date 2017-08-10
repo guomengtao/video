@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{maxcms:searchword}-{maxcms:sitename}</title>
+<meta name="keywords" content="{maxcms:searchword},{maxcms:sitename}" />
+<meta name="description" content="{maxcms:searchword},{maxcms:sitename}" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:top}
+<div class="ad960-90">
+
+<!--顶部广告1960-90-->
+<img src="images/960-90.jpg">
+
+</div>
+<div class="content_zleft">
+  <!--左边 开始-->
+  <DIV class=layout_left>
+	<H2>最新添加视频</H2>
+	<UL>
+	  {maxcms:videolist num=21 order=time type=all}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=16]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <!--左边 结束-->
+  <DIV class=layout_left>
+	<H2>热门点播视频</H2>
+	<UL>
+	  {maxcms:videolist num=21 order=hit type=all}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+<!--右边 开始-->
+<DIV class=layout_newlist>
+  <DIV class=tit>
+	<H4>搜索视频的 {maxcms:searchword} 共 {maxcms:searchnum} 条</H4></DIV>
+  <DIV id=div_1>
+	<DIV class=listBox> {maxcms:searchlist size=10 order=time}
+	  <UL>
+		<LI onMouseOver="this.className='over'" onMouseOut="this.className=''">
+		  <DIV class=listCover><A 
+  href="[searchlist:link]"> <img src="[searchlist:pic]" alt="[searchlist:name]" /> </A> </DIV>
+		  <DIV class=listInfo>
+			<H3><A title=[searchlist:name] 
+  href="[searchlist:link]">[searchlist:name len=10]</A></H3>
+			<P>状态：<SPAN style="COLOR: red">[searchlist:note]</SPAN></P>
+			<P>主演：[searchlist:actor]</P>
+			<P>分类：[searchlist:typename]</P>
+			<P>时间：[searchlist:time style=yyyy-mm-dd]</P>
+			<p>推荐度：<img src="images/[searchlist:commend].gif" /></p>
+			<p><a href="[searchlist:link]" ><img style="padding-top:5px;" src="images/xiangqing.jpg" /></a> <a href="[searchlist:playlink]" ><img style="padding-top:5px;" src="images/player.jpg" /></a></p>
+		  </DIV>
+		</LI>
+	  </UL>
+	  {/maxcms:searchlist}
+	  </UL>
+	</DIV>
+  </DIV>
+  <DIV id=div_3>
+	<DIV class=page>[searchlist:pagenumber len=8]</DIV>
+  </DIV>
+</DIV>
+<div id="bottom">{maxcms:foot}</div>
+</body>
+</html>

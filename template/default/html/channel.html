@@ -1,0 +1,106 @@
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>健康视频列表 第{channelpage:page}页 </title>
+  <meta name="keywords" content="{channelpage:typename}第{channelpage:page}页{channelpage:keywords}" />
+  <meta name="description" content="{channelpage:typename}第{channelpage:page}页{channelpage:description}" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">  
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+ <body style="padding-top:60px;">
+{maxcms:top}
+<div  class="container">
+
+ 
+   
+<div class="alert alert-success alert-dismissible" role="alert">
+ <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ <form class="form-inline"  action="../search.asp">
+  <div class="form-group">
+
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="输入疾病名称 医生" name="searchword">
+  </div>
+  
+  <button type="submit" class="btn btn-default">搜索</button>
+</form>
+</div>
+<div class="alert alert-info">
+  
+[channellist:pagenumber len=8]
+</div>
+
+ 
+
+    <div class="row">
+  	 {maxcms:channellist size=10 order=time}
+    
+    <div class="col-xs-12 col-md-6">
+ 
+ 
+	  
+		 <A href="[channellist:link]"> <img src="[channellist:pic]"  width="100%"   alt="[channellist:name]" /> </A> 
+		 
+			<H3><A title="[channellist:name]" href="[channellist:link]">[channellist:name len=20]</A></H3>
+		 
+			<P>参与医生：[channellist:actor]</P>
+			<p><a href="[channellist:link]" ><img style="padding-top:5px;" src="images/xiangqing.jpg" /></a> <a href="[channellist:link]" ><img style="padding-top:5px;" src="images/player.jpg" /></a></p>
+      
+		 
+	</div>
+	  {/maxcms:channellist}
+    </div>
+    <style>
+        .alert-info a,.alert-info  em {
+            padding-left: 6px;
+        }
+        .alert-info input {
+            display: none;
+        }
+    </style>
+<div class="alert alert-info">
+  
+[channellist:pagenumber len=8]
+</div>
+
+		<div style="width:60%">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- auto the size -->
+		<ins class="adsbygoogle"
+			 style="display:block"
+			 data-ad-client="ca-pub-8644709060035439"
+			 data-ad-slot="9891231350"
+			 data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		</div>
+<div class="alert alert-info">减少脂肪，限制胆固醇：建议多吃植物油，限制动物脂肪摄入，脂肪供给40~50g/日，胆固醇应在300~400mg/日；
+多吃含钾、钙、镁丰富的食物：如芹菜、土豆等；</div>
+		<div style="width:40%">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- auto the size -->
+		<ins class="adsbygoogle"
+			 style="display:block"
+			 data-ad-client="ca-pub-8644709060035439"
+			 data-ad-slot="9891231350"
+			 data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		</div>
+
+
+ 
+
+</div>
+
+
+{maxcms:foot}
+ </body>
+</html>

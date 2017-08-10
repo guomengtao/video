@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{news:title} {news:subtitle}- {maxcms:sitename}</title>
+<meta name="keywords" content="{news:title}{news:subtitle},{maxcms:sitename}" />
+<meta name="description" content="{news:title}{news:subtitle},{maxcms:sitename}" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:load head_news.html}
+<div class="wrap">
+	<div class="main">
+		<div class="ileft" style="float:right;">
+			<div class="combox">
+				<div class="border">
+					<h3>最新添加</h3>
+					<div class="nohimg">
+					<ul>
+					{maxcms:videolist num=4 order=time type=all}
+					<li><a href="[videolist:link]" ><img src="[videolist:pic]" /></a>
+					<dl>	
+							<dd><a href="[videolist:link]" title="[videolist:name]"><b>[videolist:name len=9]</b></a>
+								<p>主演：[videolist:actor]</p>
+								<p>类型：[videolist:typename]</p>
+								<p>来源：[videolist:from]</p>
+								<p>时间：[videolist:time]</p>
+							</dd>
+						</dl>
+						</li>
+						{/maxcms:videolist}
+					</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="iright" style="float:left;margin-left:0;width:698px;overflow:hidden">
+			<div class="combox">
+				<div class="border">
+				  <h3>{news:textlink}</h3>
+					<div class="newscon">
+						<h1>{news:colortitle}</h1>
+						<span class="info">{news:addtime}&nbsp;&nbsp;&nbsp;来源:{news:from}&nbsp;&nbsp;&nbsp;点击：{news:hit} </span>
+						<p class="summary">简述：{news:outline}...</p>
+						<div id="text">
+							<table width="100%"><tr><td>{news:subcontent}
+
+<video width="100%" height="240" controls="controls" loop="loop" poster="http://file.youlai.cn/cnkfile1/M00/00/51/o4YBAFebKcGAKar9AABOZBP6seU48.jpeg">
+ 
+  <source src="{news:subcontent}" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+</td></tr></table>
+							<div class=page> {news:subpagenumber len=5}</div>
+							<p><br>{news:mark}</p>
+						</div>
+						<div id="more"><h1>相关链接：</h1><h2>{news:prenext}</h2></div>
+						<div>{news:comment}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 {maxcms:foot}
+</div>
+</body>
+</html>

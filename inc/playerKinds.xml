@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="gbk" ?>
+<playerkinds>
+<!--Maxcms4.0播放器支持格式说明：
+1.player节点为播放器，不可更改
+2.flag属性不能更改，作为来源的标识
+3.open属性表示启用或者关闭该来源，open="1"为开启，open="0"为关闭
+4.intro节点为每个播放器的说明信息，可以自由更改
+5.sort排序属性，值为数字,值越大越排前
+-->
+	<player open="1" sort="9" flag="qq播客" des="video.qq.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="8" flag="六间房" des="6.cn"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="7" flag="搜狐" des="sohu.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="6" flag="土豆高清" des="hd.tudou.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="5" flag="56高清" des="tv.56.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="4" flag="新浪" des="you.video.sina.com.cn"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="3" flag="乐视" des="www.letv.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="2" flag="土豆" des="tudou.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="16" flag="影音先锋" des="www.xfplay.com"><intro><![CDATA[<a href="http://u.maxcms.co/dl/xfplay/xfplay.exe" target="_blank">需下载影音先锋播放器</a>]]></intro></player>
+	<player open="1" sort="15" flag="cntv" des="www.cntv.cn"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="13" flag="奇艺" des="www.qiyi.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="12" flag="pptv" des="www.pptv.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="11" flag="ppstream" des="P2P"><intro><![CDATA[<a href="http://dl.pps.tv" target="_blank">需要下载PPSream播放器</a>]]></intro></player>
+	<player open="1" sort="100" flag="吉吉影音" des="jjvod-P2P"><intro><![CDATA[<a href="http://u.maxcms.co/dl/jjvod/jjvod.exe" target="_blank">需要下载吉吉影音JJVOD播放器</a>]]></intro></player>
+	<player open="1" sort="10" flag="ku6视频" des="www.ku6.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="1" flag="优酷" des="youku.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="0" flag="SWF数据" des="绝对地址SWF文件"><intro><![CDATA[无需安装任何插件]]></intro></player>
+	<player open="1" sort="0" flag="17173" des="vlog.17173.com"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="0" flag="real" des="rm,rmvb等格式"><intro><![CDATA[需要电脑支持RealOne播放器]]></intro></player>
+	<player open="1" sort="0" flag="media" des="wmv,asf等格式"><intro><![CDATA[无需安装任何插件]]></intro></player>
+	<player open="1" sort="0" flag="FLV文件" des="绝对地址FLV文件"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+	<player open="1" sort="0" flag="xigua" des="MP4格式高清视频"><intro><![CDATA[<a href="http://u.maxcms.co/dl/xigua/xigua.exe" target="_blank">需下载西瓜播放器</a>]]></intro></player>
+	<player open="1" sort="0" flag="cntv" des="www.cntv.cn"><intro><![CDATA[无需安装任何插件，即可快速播放]]></intro></player>
+</playerkinds>

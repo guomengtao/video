@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gbk" ?> 
+<downkinds>
+<!--
+Maxcms4.0下载支持格式说明：
+1.source节点为下载地址，不可更改
+2.flag属性不能更改，作为来源的标识
+3.open属性表示启用或者关闭该下载源，open="1"为开启，open="0"为关闭
+4.intro节点为每个下载源的说明信息，可以自由更改
+-->
+	<source flag="下载地址1"   des="这是第一个下载地址" open="1"><intro> <![CDATA[  ]]> </intro></source>
+	<source flag="下载地址2"   des="这是第二个下载地址" open="1"><intro> <![CDATA[  ]]> </intro></source>
+	<source flag="下载地址3"   des="这是第三个下载地址" open="1"><intro> <![CDATA[  ]]> </intro></source>
+</downkinds>

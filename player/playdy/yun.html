@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Yun Pan</title>
+<style type="text/css">div,body{margin:0; padding:0;}
+.pboxyunpan {
+	width: 610px;
+	height: 180px;
+	background: #FFFFFF url(playboxbg.png) no-repeat left -312px;
+}
+.palybb1 { height:40px; line-height:40px; font-size:16px; color:#FFFFFF; padding-top:32px; padding-left:80px;}
+.palybb2 {
+	height: 44px;
+	line-height: 44px;
+	font-size: 14px;
+	color: #FFFFFF;
+	padding-top: 32px;
+	padding-left: 110px;
+	padding-right: 40px;
+}
+</style>
+</head>
+<body>
+<!--整理修改 By Beyond  Time:2014-04-07 -->
+<div class=pboxyunpan>
+  <div class=palybb1><font size=4>下面框中是百度云盘下载地址，请直接点击进入百度云盘界面</font></div>
+  <div class=palybb2><font color=#ffffff size=3></font>
+document.writeln("<script type=\"text\/javascript\">");
+document.writeln("	var playerh,playerw,url");
+document.writeln("	url=unescape(window.location.href).split(\"&&\")[0].split(\"u=\")[1];");
+document.writeln("	playerh=window.parent.playerh;");
+document.writeln("	playerw=window.parent.playerw;");
+document.writeln("	document.write(\"<a href=\'\"+url+\"\' rel=\'nofollow\' target=\'_blank\'>点击此进入百度云盘地址观看或下载<\/a>\");");
+document.writeln("<\/script>")
+</div>
+</div>
+
+</body>
+</html>

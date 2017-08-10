@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>最近更新_第{customvideo:page}页</title>
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+
+</head>
+<body>
+{maxcms:top}
+<div class="play_left">
+  <!--左边 开始-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>本月热播总排行</H2>
+	<UL>
+	  {maxcms:videolist num=12 order=hit type=all}
+	  <li><span><font color="red">[videolist:hit]℃</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <!--左边 结束-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/commend.html">更多&gt;&gt;</a></SPAN>总推荐排行</H2>
+	<UL>
+	  {maxcms:videolist num=12 type=all order=commend}
+	  <li><span><font color="red">[videolist:hit]℃</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+<!--右边 开始-->
+<DIV class="play_right">
+  <DIV class=tit>
+	<H4 style=" font-weight:bold; font-size:14px;">最近更新排行榜</H4></DIV>
+	<div class="newtime">
+	{maxcms:customvideolist size=10 type=all order=time maxpage=5}
+	<li><a href="[customvideolist:link]" title="[customvideolist:name]">[customvideolist:colorname]</a><font color="#666">[customvideolist:time style=yyyy-mm-dd]</font></li>
+	{/maxcms:customvideolist}
+	</div>
+	<DIV class=page>[customvideolist:pagenumber len=8]</DIV>
+</DIV>
+<!--右边 结束-->
+{maxcms:foot}
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<title>播放器</title>
+
+<style>body{ margin:0; padding:0; background-color:#000;}</style>
+
+</head>
+
+<body>
+
+<script type="text/javascript" language="javascript">
+
+window.onerror = function(){return true;}
+
+
+
+var config = {
+
+	loading: '/js/loading.html',
+
+	install:'http://error2.qvod.com/error4.htm'
+
+};
+
+
+
+var html = [];
+
+html.push('<iframe id="xframe_mz" name="xframe_mz" scrolling="no" frameborder="0" width="100%" height="'+(window.parent.pHeight-30)+'" style="display: none;" src=""></iframe>');
+
+html.push('<object classid="clsid:F3D0D36F-23F8-4682-A195-74C92B03D4AF" width="100%" height="'+(window.parent.pHeight-30)+'" id="QvodPlayer" name="QvodPlayer" ');
+
+html.push('onerror="document.getElementById(\'QvodPlayer\').style.display=\'none\';document.getElementById(\'xframe_mz\').style.display=\'\';document.getElementById(\'xframe_mz\').src=\''+config.install+'\';">');
+
+html.push('<PARAM NAME="Showcontrol" VALUE="1">');
+
+html.push('<PARAM NAME="URL" VALUE="'+window.parent.playurl+'">');
+
+html.push('<PARAM NAME="Showcontrol" VALUE="1">');
+
+html.push('<PARAM NAME="NextWebPage" VALUE="'+window.parent.nextlink+'">');
+
+html.push('<PARAM NAME="Autoplay" VALUE="1">');
+
+html.push('<PARAM NAME="QvodAdUrl" value="'+config.loading+'">');
+
+html.push('<embed id="QvodPlayer2" name="QvodPlayer2" width="100%" height="'+(window.parent.pHeight-30)+'" NextWebPage="'+window.parent.nextlink+'" URL="'+window.parent.playurl+'" type="application/qvod-plugin" Autoplay="1" QvodAdUrl="'+config.loading+'" Showcontrol="2"></embed>');
+
+html.push('</object>');
+
+document.write(html.join(''));
+
+function QvodNextDown(){
+	if(QvodPlayer.get_CurTaskProcess() > 900 && !bstartnextplay){
+		QvodPlayer.StartNextDown(window.parent.nextpurl.split("$")[1]);
+		bstartnextplay = true;
+	}
+}
+
+	if(window.parent.nextlink){
+		var bstartnextplay = false;
+		setInterval("QvodNextDown()",9333);
+	}
+	function QvodStatus(){
+	 if(QvodPlayer.Full == 0){
+		if(QvodPlayer.PlayState == 6){
+      parent.window.location.href=window.parent.nextlink;
+	  }
+   }
+  }
+	setInterval("QvodStatus()",500);
+
+function OnloadFun()
+{
+	var checkIEorFirefox = {}
+		 if(window.ActiveXObject){
+			checkIEorFirefox.ie = "yes";
+			QvodIEFF = $$("QvodPlayer");
+		 }else{
+			checkIEorFirefox.firefox = "yes";
+			QvodIEFF = $$("QvodPlayer2");
+		 }		
+    setInterval("FixPos()",500);
+}</script>
+<script language="JavaScript" src="qovd.js"></script>
+</body>
+
+</html>

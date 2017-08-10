@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<title>播放器</title>
+
+<style>body{ margin:0; padding:0; background-color:#000;}</style>
+
+</head>
+
+<body>
+
+<script type="text/javascript" language="javascript">
+
+window.onerror = function(){return true;}
+
+
+
+var config = {
+
+	install:'/player/playdy/xigua.htm'
+
+};
+
+
+
+var html = [];
+
+html.push('<iframe id="xframe_mz" name="xframe_mz" scrolling="no" frameborder="0" width="100%" height="'+(window.parent.pHeight-30)+'" style="display: none;" src=""></iframe>');
+
+html.push('<object classid="clsid:BEF1C903-057D-435E-8223-8EC337C7D3D0" width="100%" height="'+(window.parent.pHeight-30)+'" id="xiguaPlayer" name="xiguaPlayer" ');
+
+html.push('onerror="document.getElementById(\'xiguaPlayer\').style.display=\'none\';document.getElementById(\'xframe_mz\').style.display=\'\';document.getElementById(\'xframe_mz\').src=\''+config.install+'\';">');
+
+html.push('<PARAM NAME="Showcontrol" VALUE="1">');
+
+html.push('<PARAM NAME="URL" VALUE="'+window.parent.playurl+'">');
+
+html.push('<PARAM NAME="Showcontrol" VALUE="1">');
+
+html.push('<PARAM NAME="NextWebPage" VALUE="'+window.parent.nextlink+'">');
+
+html.push('<PARAM NAME="Autoplay" VALUE="1">');
+
+html.push('<PARAM NAME="xiguaPlayerAdUrl" value="'+config.loading+'">');
+
+html.push('<embed type="application/xiguaPlayer-plugin" id="xiguaPlayer2" name="xiguaPlayer2" PARAM_URL="'+window.parent.playurl+'" width="100%" height="'+(window.parent.pHeight-30)+'"</embed>');
+//<object width="'+XgPlayer.Width+'" height="'+XgPlayer.Height+'" type="application/xgyingshi-activex" progid="xgax.player.1" param_URL="'+XgPlayer.Url+'" param_NextCacheUrl="'+XgPlayer.NextcacheUrl+'" param_LastWebPage="'+XgPlayer.LastWebPage+'" param_NextWebPage="'+XgPlayer.NextWebPage+'" param_OnPause="onPause" param_OnFirstBufferingStart="onFirstBufferingStart" param_OnFirstBufferingEnd="onFirstBufferingEnd" param_OnPlayBufferingStart="onPlayBufferingStart" param_OnPlayBufferingEnd="onPlayBufferingEnd" param_OnComplete="onComplete" param_Autoplay="1" id="xiguaPlayer" name="xiguaPlayer"></object>
+html.push('</object>');
+
+//document.write(html.join(''));
+
+var XgPlayer = {
+'Url': window.parent.playurl,
+'NextcacheUrl': '', //缓冲下一集
+'LastWebPage': '',
+'NextWebPage': window.parent.nextlink, //下一集播放页面地址
+'Buffer': '/js/loading.html', // 缓冲广告页面地址，需更改
+'Pase': 'js/loading.html', // 暂停广告页面地址，需更改
+'Width': '100%',
+'Height': window.parent.pHeight-30,
+'Second': 8, // 缓冲时间(秒)
+"Installpage": '/player/playdy/xigua.htm' //安装提示页面地址
+};
+document.write('<script language="javascript" src="http://static.xigua.com/xiguaplayer.js?'+new Date().getTime()+'" charset="utf-8"><\/script>');
+</script>
+
+</body>
+
+</html>

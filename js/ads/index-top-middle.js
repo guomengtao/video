@@ -1,0 +1,1 @@
+document.writeln("<a href=\"http:\/\/www.maxcms.net\" target=\"_blank\" class=\"imgflaot\"><img src=\"/"+sitePath+"template/default/images\/460-60.jpg\" \/><\/a>")

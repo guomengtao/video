@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{maxcms:topicname}_第{topicpagelist:page}页_{maxcms:sitename}</title>
+<meta name="keywords" content="{maxcms:topicname}第{topicpagelist:page}页" />
+<meta name="description" content="{maxcms:topicname}第{topicpagelist:page}页" />
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+{maxcms:load head_topic.html}
+<div class="content_zleft">
+  <!--左边 开始-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/new.html">更多&gt;&gt;</a></SPAN>最新添加的{maxcms:topicname}</H2>
+	<ul>
+	  {maxcms:videolist num=21 order=time topic=current}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>热门点播的{maxcms:topicname}</H2>
+	<ul>
+	  {maxcms:videolist num=21 order=hit topic=current}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</ul>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+<DIV class=layout_newlist>
+  <DIV class=tit>
+	<H4><SPAN>当前位置:</SPAN>专辑</H4></DIV>
+  <DIV id=div_1>
+	<DIV class=listBox> {maxcms:topicpagelist size=10 order=time}
+	  <UL>
+		<LI onMouseOver="this.className='over'" onMouseOut="this.className=''">
+		  <DIV class=listCover><A href="[topicpagelist:link]"> <img src="[topicpagelist:pic]" alt="[topicpagelist:name]" /> </A> </DIV>
+		  <DIV class=listInfo>
+			<H3><A title="[topicpagelist:name]" href="[topicpagelist:link]">[topicpagelist:name len=10]</A></H3>
+			<P>状态：<SPAN style="COLOR: red">{if:[topicpagelist:state]>0}<font color="blus">连载[topicpagelist:state]集</font>{else}完结{end if}</a></SPAN></P>
+			<P>主演：[topicpagelist:actor]</P>
+			<P>分类：[topicpagelist:typename]</P>
+			<P>时间：[topicpagelist:time style=yyyy-mm-dd]</P>
+			<p>推荐度：<img src="images/[topicpagelist:commend].gif" alt="{playpage:name}" /></p>
+			<p><a href="[topicpagelist:link]" ><img style="padding-top:5px;" src="images/xiangqing.jpg" /></a> <a href="[topicpagelist:playlink]" ><img style="padding-top:5px;" src="images/player.jpg" /></a></p>
+		  </DIV>
+		</LI>
+	  </UL>
+	  {/maxcms:topicpagelist}
+	  </DIV>
+  </DIV>
+  <DIV id=div_3>
+	<DIV class=page>[topicpagelist:pagenumber len=8]</DIV>
+  </DIV>
+</DIV>
+<!--右边 结束-->
+<div id="bottom"> {maxcms:foot}</div>
+</body></html>

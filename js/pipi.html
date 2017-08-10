@@ -1,0 +1,76 @@
+<html>
+<HEAD>
+<script language="JavaScript" type="text/javascript">
+var zyPlayer={
+	_flag:0,
+	width:600,
+	height:400,
+	_wnd:null,
+	//判断浏览器以及有无安装控件
+	_check:function() {
+		var w3c=(document.getElementById)? true: false;
+		var agt=navigator.userAgent.toLowerCase();
+		var ie = ((agt.indexOf("msie") != -1) && (agt.indexOf("opera") == -1) && (agt.indexOf("omniweb") == -1));
+		if (!ie) {
+			alert("web在线播放页面仅支持IE！");
+			return;
+		}
+		try {
+			new ActiveXObject("PIPIWEBPLAYER.PIPIWebPlayerCtrl.1");			
+			zyPlayer._flag=1;
+		} catch(e) {}		
+	},
+	_init:function() {
+		zyPlayer._check();
+		if (zyPlayer._flag==0) {
+			zyPlayer.notInstall();
+		} else {
+			zyPlayer._createActivex();
+		}
+	},
+	//没安装控件的情况下
+	notInstall:function() {
+		/*if (confirm("为了更流畅地观看高清数据，推荐您下载安装皮皮影音。\n\n现在下载安装皮皮影音？")) {
+			document.location="http://dl.pipi.cn/pipi_321.exe";
+		} else {
+			alert("对不起，假如您没有安装皮皮影音，就无法观看本网站提供的数据。");
+		}*/
+		var _t="<iframe scrolling='no' frameborder='0' style='margin:0; width:"+zyPlayer.width+"px; height:"+zyPlayer.height+"px' src='pipiinstall/pipiinstall.html'></iframe>";
+		document.write(_t);
+	},
+	_createActivex:function() {
+		var _str='<OBJECT style="WIDTH:'+zyPlayer.width+'px; HEIGHT:'+zyPlayer.height+'px" id=pipiwebplayer_control classid=clsid:A74BF134-5213-46B5-AF36-CE1888315DC7></OBJECT>';
+		document.write(_str);		
+	},
+	play:function(_movUrl,_zzid) {
+		zyPlayer._init();
+		if (zyPlayer._flag==1) {			
+			zyPlayer._getWnd(_movUrl,_zzid);
+		}
+	},	
+	_getWnd:function(_movUrl,_zzid) {	
+		if (!pipiwebplayer_control.strWebPlayerWndHandle || (pipiwebplayer_control.strWebPlayerWndHandle+"")=="") {
+			window.setTimeout(function() {zyPlayer._getWnd(_movUrl,_zzid);},1000);
+		} else {
+			zyPlayer._wnd=pipiwebplayer_control.strWebPlayerWndHandle;
+			zyPlayer._play(_movUrl,_zzid);
+		}
+	},
+	_play:function(_movUrl,_zzid) {
+		var _temp=_movUrl.split('|');
+		var _t=[];
+		_t.push(_temp[0]);
+		_t.push("for/chromebug");
+		_t.push("zzid="+_zzid);
+		if (zyPlayer._wnd!=null)
+			_t.push("wnd="+zyPlayer._wnd);
+		_t.push(_temp[1]);
+		_movUrl=_t.join('|');
+		document.location=_movUrl;
+	}
+}
+</script>
+</HEAD>
+<BODY topmargin=0 leftmargin=0><script language="JavaScript" type="text/javascript">eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[3-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('var 3,4,5;3=location.search.substr(1).6(\'\\7\\7\\u006d\\u0061xc\\u0063\\u005f_\');4=zyPlayer;4.width=3[0];4.height=3[1];5=(3[2]+"").6("\\8\\u0070\\u0069\\u0070izzi\\u0064\\8");4.play(5[0],!/[^\\d]/.test(5[1])?5[1]:0);',[],9,'|||ll1|l11|l1l|split|u005f|u007c'.split('|'),0,{}))</script>
+</body>
+</html>

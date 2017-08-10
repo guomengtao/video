@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{maxcms:sitename}</title>
+<meta name="keywords" content="{maxcms:sitename}" />
+<meta name="description" content="{maxcms:sitename}" />
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow">
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:top}
+<!--最近更新列表开始1-->
+<DIV class=layout_left>
+  <H2><SPAN class="more"><a href="/{maxcms:sitepath}top/new.html">更多&gt;&gt;</a></SPAN>最近更新列表</H2>
+  <UL>
+	{maxcms:videolist num=26 type=all order=time}
+	<li><span><font color="#666">[videolist:time]</font></span>
+	  <div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	</li>
+	{/maxcms:videolist}
+  </UL>
+  <DIV class=space style="padding-bottom:5px;"></DIV>
+</DIV>
+<!--左边 结束1-->
+<!--今日更新列表开始1-->
+<DIV class=layout_right>
+  <DIV class=tit>
+	<H2>今日更新列表</H2>
+  </DIV>
+  <UL>
+	{maxcms:videolist num=18 type=all}
+	<LI><a href="[videolist:link]" target="_blank"><img src="[videolist:pic]"/><em>[videolist:note]</em>
+	  <p>[videolist:name len=8]</p>
+	  </a></LI>
+	{/maxcms:videolist}
+  </UL>
+</DIV>
+
+
+<div class="ad960-90">
+
+<!--首页广告2-->
+
+<a href="http://www.maxcms.co/" target="_blank"><img src="images/960-90.gif" border="0"></a>
+
+</div>
+<!--右边 结束1-->
+<div style="clear:both;"></div>
+
+<!--左边 开始-->
+<DIV class=layout_left>
+  <H2><SPAN class="more"><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>本月视频点播排行</H2>
+  <UL>
+	{maxcms:videolist num=10 order=monthhit}
+	<li><span><font color="#666">[videolist:time]</font></span>
+	  <div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name len=12]<font color="red">[videolist:note]</font></a></div>
+	</li>
+	{/maxcms:videolist}
+  </UL>
+  <DIV class=space style="padding-bottom:5px;"></DIV>
+</DIV>
+
+<!--左边 结束-->
+<!--右边 开始-->
+<DIV class=layout_rightr>
+  <DIV class=tit>
+	<H2>最近更新视频</H2>
+  </DIV>
+  <DIV class=zmlist>
+	<UL>
+	  {maxcms:videolist num=50}
+	  <li>
+		<div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+  </DIV>
+</DIV>
+<!--右边 结束-->
+<div style="clear:both;"></div>
+<!--左边 开始-->
+<DIV class=layout_left>
+  <H2><SPAN class="more"><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>本月体育点播排行</H2>
+  <UL>
+	{maxcms:videolist num=10 type=2 order=monthhit}
+	<li><span><font color="#666">[videolist:time]</font></span>
+	  <div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	</li>
+	{/maxcms:videolist}
+  </UL>
+  <DIV class=space style="padding-bottom:5px;"></DIV>
+</DIV>
+<!--左边 结束-->
+<!--右边 开始-->
+<DIV class=layout_rightr>
+  <DIV class=tit>
+	<H2>本月体育最近更新</H2>
+  </DIV>
+  <DIV class=zmlist>
+	<UL>
+	  {maxcms:videolist num=50 type=2}
+	  <li>
+		<div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+  </DIV>
+</DIV>
+<!--右边 结束-->
+<div style="clear:both;"></div>
+<!--左边本月热门汽车排行开始-->
+<DIV class=layout_left>
+  <H2><SPAN class="more"><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>本月汽车点播排行</H2>
+  <UL>
+	{maxcms:videolist num=10 type=3 order=monthhit}
+	<li><span><font color="#666">[videolist:time]</font></span>
+	  <div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	</li>
+	{/maxcms:videolist}
+  </UL>
+  <DIV class=space style="padding-bottom:5px;"></DIV>
+</DIV>
+<!--左边 结束-->
+
+<!--右边 开始-->
+<DIV class=layout_rightr>
+  <DIV class=tit>
+	<H2>本月汽车最近更新</H2>
+  </DIV>
+  <DIV class=zmlist>
+	<UL>
+	  {maxcms:videolist num=50 type=3}
+	  <li>
+		<div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+  </DIV>
+</DIV>
+
+<div class="ad960-90">
+
+<!--首页广告2-->
+<a href="http://www.maxcms.co/" target="_blank"><img src="images/960-90.gif"></a>
+
+</div>
+
+<!--右边 结束-->
+<div style="clear:both;"></div>
+<!--左边本月热门科技排行开始-->
+<DIV class=layout_left>
+  <H2><SPAN class="more"><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>本月科技点播排行</H2>
+  <UL>
+	{maxcms:videolist num=14 type=4 order=monthhit}
+	<li><span><font color="#666">[videolist:time]</font></span>
+	  <div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	</li>
+	{/maxcms:videolist}
+  </UL>
+  <DIV class=space style="padding-bottom:5px;"></DIV>
+</DIV>
+<!--左边 结束-->
+<!--右边 开始-->
+<DIV class=layout_rightr>
+  <DIV class=tit>
+	<H2>本月科技点播排行</H2>
+  </DIV>
+  <DIV class=zmlist>
+	<UL>
+	  {maxcms:videolist num=70 type=4 order=monthhit}
+	  <li>
+		<div class="title"><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:name]<font color="red">[videolist:note]</font></a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+  </DIV>
+</DIV>
+<!--右边 结束-->
+<div style="clear:both;"></div>
+<DIV class="layout_favlist">
+  <DIV class=tit>
+	<H2>本站随机视频播放菜单<A name=dm>&nbsp;</A></H2>
+  </DIV>
+  <UL>
+	{maxcms:videolist num=36 order=random}
+	<li><a href="[videolist:link]" target="_blank" title="[videolist:name]">[videolist:i].[videolist:name]</a></li>
+	{/maxcms:videolist}
+  </ul>
+  </UL>
+  <DIV class=space></DIV>
+</DIV>
+<DIV class=flink_buhaokan>
+  <DIV class=tit>
+	<H3>友情链接</H3>
+  </DIV>
+  <UL>
+  	<li><a href="http://www.maxcms.co/" target="_blank">Maxcms论坛</a></li>
+	{maxcms:linklist type=font}
+	<li><a href="[linklist:link]" target="_blank">[linklist:name]</a></li>
+	{/maxcms:linklist}
+  </UL>
+  <DIV class=space></DIV>
+</DIV>
+<div id="bottom"> {maxcms:foot} </div>
+</body>
+</html>

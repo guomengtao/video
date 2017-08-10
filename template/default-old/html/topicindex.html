@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>专辑列表_第{topicindexlist:page}页_{maxcms:sitename}</title>
+<meta name="keywords" content="{maxcms:sitename}" />
+<meta name="description" content="{maxcms:sitename}" />
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow">
+<link href="images/style.css" rel="stylesheet">
+<script>var sitePath='{maxcms:sitepath}'</script>
+<script src="/{maxcms:sitepath}js/common.js"></script>
+<script src="/{maxcms:sitepath}js/function.js"></script>
+</head>
+<body>
+{maxcms:load head_topic.html}
+<div class="content_zleft">
+  <!--左边 开始-->
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/new.html">更多&gt;&gt;</a></SPAN>最新添加专辑</H2>
+	<ul>
+	  {maxcms:videolist num=21 order=time topic=all}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</UL>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+  <DIV class=layout_left>
+	<H2><SPAN><a href="/{maxcms:sitepath}top/rank.html">更多&gt;&gt;</a></SPAN>热门点播专辑</H2>
+	<ul>
+	  {maxcms:videolist num=21 order=hit topic=all}
+	  <li><span><font color="#666">[videolist:time style=mm-dd]</font></span>
+		<div class="title"><a href="[videolist:link]" title="[videolist:name]">[videolist:colorname len=15]</a></div>
+	  </li>
+	  {/maxcms:videolist}
+	</ul>
+	<DIV class=space style="padding-bottom:5px;"></DIV>
+  </DIV>
+</div>
+<DIV class=layout_newlist>
+  <DIV class=tit>
+	<H4><SPAN>当前位置:</SPAN>专辑列表</H4></DIV>
+  <DIV id=div_1>
+	<DIV class=listBox> {maxcms:topicindexlist size=10}
+	  <UL>
+		<LI onMouseOver="this.className='over'" onMouseOut="this.className=''">
+		  <DIV class=listCover><A href="[topicindexlist:link]"> <img src="[topicindexlist:pic]" alt="[topicindexlist:name]" /> </A> </DIV>
+		  <DIV class=listInfo>
+			<H3><P><A title="[topicindexlist:name]" href="[topicindexlist:link]">[topicindexlist:name len=10]</A></P></H3>
+			<div>描述：[topicindexlist:des]</div>
+		  </DIV>
+		</LI>
+	  </UL>
+	  {/maxcms:topicindexlist}
+	  </DIV>
+  </DIV>
+  <DIV id=div_3>
+	<DIV class=page> [topicindexlist:pagenumber len=8]</DIV>
+  </DIV>
+</DIV>
+<!--右边 结束-->
+<div id="bottom"> {maxcms:foot}</div>
+</body></html>
