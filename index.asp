@@ -1,35 +1,16 @@
 <!--#include file="inc/MainClass.asp"-->
-<%
-'******************************************************************************************
-' Software name: Max(Âí¿ËË¹) Content Management System
-' Version:4.0
-' Web: http://www.maxcms.net
-' Author: Ê¯Í·(maxcms2008@qq.com),yuet,³¤Ã÷,¾ÆÆ¿
-' Copyright (C) 2005-2009 Âí¿ËË¹¹Ù·½ °æÈ¨ËùÓÐ
-' ·¨ÂÉÉêÃ÷£ºMaxCMS³ÌÐòËùÓÐ´úÂë100%Ô­´´¡¢Î´ÒýÈëÈÎºÎÍøÉÏ´úÂë,¶ÔÒ»ÇÐ³­Ï®ÐÐÎª¡¢¼á¾öÑÏËà×·¾¿·¨ÂÉÔðÈÎ
-'******************************************************************************************
-Function GetIndex()
-	dim cacheName,indexStr,x : cacheName="parsed_index"
-	x="/"&sitePath&"template/"&defaultTemplate&"/"&templateFileFolder&"/index.html"
-	if cacheStart=1 then 
-		if cacheObj.chkCache(cacheName) then indexStr = cacheObj.getCache(cacheName) else parseIndex(x):indexStr=templateObj.content:cacheObj.setCache cacheName,indexStr
-	else
-		parseIndex(x):indexStr=templateObj.content
-	end if
-	GetIndex=indexStr
-End Function
-
-Sub parseIndex(x)
-	with templateObj:.content=loadFile(x):.parseTopAndFoot():.parseSelf():.parseGlobal():.content=replaceCurrentTypeId(.content):.parseMenuList(""):.parseAreaList():.parseTopicList():.parseVideoList():.parseNewsList():.parseLinkList:.parseIf():end with
-End Sub
-
-if  runMode="static"  then
-	response.Redirect("/"&sitePath&"index"&fileSuffix)
-else
-	tryDieCacheFile 0,"#video"
-	dim templateobj,temp: set templateobj = mainClassobj.createObject("MainClass.template"):temp=GetIndex()
-	WriteCacheFile 0,"#video",temp:echo replaceStr(temp,"{maxcms:runinfo}",getRunTime())
-	set templateobj =nothing : terminateAllObjects
-end if
-%>
-
+<% '******************************************************************************************
+' Software name: Max(ï¿½ï¿½ï¿½ï¿½Ë¹) Content Management System ' Version:4.0
+' Web: http://www.maxcms.net ' Author: Ê¯Í·(maxcms2008@qq.com),yuet,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Æ¿
+' Copyright (C) 2005-2009 ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½Ù·ï¿½ ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ ' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MaxCMSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½100%Ô­ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½,ï¿½ï¿½Ò»ï¿½Ð³ï¿½Ï®ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+' ****************************************************************************************** Function GetIndex() dim
+	cacheName,indexStr,x : cacheName="parsed_index" x="/"
+	&sitePath&"template/"&defaultTemplate&"/"&templateFileFolder&"/index.html" if cacheStart=1 then if
+	cacheObj.chkCache(cacheName) then indexStr=cacheObj.getCache(cacheName) else
+	parseIndex(x):indexStr=templateObj.content:cacheObj.setCache cacheName,indexStr else
+	parseIndex(x):indexStr=templateObj.content end if GetIndex=indexStr End Function Sub parseIndex(x) with
+	templateObj:.content=loadFile(x):.parseTopAndFoot():.parseSelf():.parseGlobal():.content=replaceCurrentTypeId(.content):.parseMenuList(""):.parseAreaList():.parseTopicList():.parseVideoList():.parseNewsList():.parseLinkList:.parseIf():end
+	with End Sub if runMode="static" then response.Redirect("/"&sitePath&"index"&fileSuffix) else tryDieCacheFile
+	0,"#video" dim templateobj,temp: set templateobj=mainClassobj.createObject("MainClass.template"):temp=GetIndex()
+	WriteCacheFile 0,"#video",temp:echo replaceStr(temp,"{maxcms:runinfo}",getRunTime()) set templateobj=nothing :
+	terminateAllObjects end if %>

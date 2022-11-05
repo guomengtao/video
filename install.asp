@@ -1,217 +1,310 @@
 <!-- #include file="inc/MainClass.asp" -->
 <!--#include file="inc/pinyin.asp"-->
-<%
-die "ÔÝÍ£°²×°<br>(*^__^*) ¡­¡­ÄúÒÑ¾­°²×°¹ýÁË£¬ÈçÐèÒªÔÙ´Î°²×°£¬ÇëÉ¾³ý¸ÃÎÄ¼þµÄµÚÈýÐÐ´úÂë¼´¿É"
-'******************************************************************************************
-' Software name: Max(Âí¿ËË¹) Content Management System
-' Version:4.0
-' Web: http://www.maxcms.net
-' Author: Ê¯Í·(maxcms2008@qq.com),yuet,³¤Ã÷,¾ÆÆ¿
-' Copyright (C) 2005-2009 Âí¿ËË¹¹Ù·½ °æÈ¨ËùÓÐ
-' ·¨ÂÉÉêÃ÷£ºMaxCMS³ÌÐòËùÓÐ´úÂë100%Ô­´´¡¢Î´ÒýÈëÈÎºÎÍøÉÏ´úÂë,¶ÔÒ»ÇÐ³­Ï®ÐÐÎª¡¢¼á¾öÑÏËà×·¾¿·¨ÂÉÔðÈÎ
-'******************************************************************************************
+<% die "ï¿½ï¿½Í£ï¿½ï¿½×°<br>(*^__^*) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ù´Î°ï¿½×°ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ë¼´ï¿½ï¿½" '******************************************************************************************
+' Software name: Max(ï¿½ï¿½ï¿½ï¿½Ë¹) Content Management System ' Version:4.0
+' Web: http://www.maxcms.net ' Author: Ê¯Í·(maxcms2008@qq.com),yuet,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Æ¿
+' Copyright (C) 2005-2009 ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½Ù·ï¿½ ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ ' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MaxCMSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½100%Ô­ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½,ï¿½ï¿½Ò»ï¿½Ð³ï¿½Ï®ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+' ****************************************************************************************** Const
+	CONFIGPATH="inc/config.asp" Const INDEXPATH="index.asp" Const INSTALLPATH="install.asp" Const
+	PLAYERJSPATH="js/play.js" Dim ac,go:ac=getForm("action","both"):go=getForm("go","both") Dim
+	gConn,gCols(1),timeStr:timeStr=ifthen(databaseType=0,"now()","getdate()") Select Case ac Case "one" :One Case "two"
+	:two Case "three" :three Case "four" :four Case else:Main End Select if isObject(gConn) then Set gConn=nothing Sub
+	Head(title,tips,step) Dim cur(4):cur(step)=" class=""cur""" %>
+	<!DOCTYPE html
+		PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 
-Const CONFIGPATH	="inc/config.asp"
-Const INDEXPATH		="index.asp"
-Const INSTALLPATH	="install.asp"
-Const PLAYERJSPATH	="js/play.js"
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>Õ¾ï¿½ã°²×° - <%=title%>
+		</title>
+		<meta name="robots" content="nofollow" />
+		<meta name="googlebot" content="nofollow" />
+		<style type="text/css">
+			body {
+				text-align: center
+			}
 
-Dim ac,go:ac=getForm("action","both"):go=getForm("go","both")
-Dim gConn,gCols(1),timeStr:timeStr=ifthen(databaseType=0,"now()","getdate()")
+			p {
+				padding: 3px 0;
+				margin: 0
+			}
 
-Select Case ac
-	Case "one":One
-	Case "two":two
-	Case "three":three
-	Case "four":four
-	Case else:Main
-End Select
-if isObject(gConn) then Set gConn=nothing
+			hr,
+			h3 {
+				border-bottom: 1px solid #C4E1FF;
+				color: #333;
+				margin-top: 0
+			}
 
-Sub Head(title,tips,step)
-Dim cur(4):cur(step)=" class=""cur"""
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>Õ¾µã°²×° - <%=title%></title>
-<meta name="robots" content="nofollow" />
-<meta name="googlebot" content="nofollow" />
-<style type="text/css">
-body{text-align:center}p{padding:3px 0;margin:0}
-hr,h3{border-bottom:1px solid #C4E1FF;color:#333;margin-top:0}
-hr{height:1px}
-h3{font-size:18px;font-family:"ºÚÌå";font-weight:300;text-indent:25px}
+			hr {
+				height: 1px
+			}
 
-label{display: inline-block}
-input{border-width:0}
-.inpt{border:1px solid #CCC;height:18px;line-height:15px;width:200px;background:#F9F9F9 none}
-textarea{border:1px solid;border-color:#666 #ccc #ccc #666;background:#F9F9F9;color:#333;padding:5px 1px}
-#installbox{background-color:white;border:1px solid #1B76B7;margin:0 auto;width:600px;text-align:left;margin-top:2em}
-.msgtitle{padding:3px 3px;color:white;font-weight:700;line-height:21px;height:25px;font-size:12px;border-bottom:1px solid #1B76B7; text-indent:3px; background-color:#1B76B7}
-#msgbody{font-size:12px;line-height:25px;padding-top:1em;}
-#msgbottom{text-align:center;height:20px;line-height:20px;font-size:12px;background-color:#1b76b7;color:#FFF}
-.btn{margin:3px 0;padding:2px 5px;*padding:4px 5px 1px;border:1px solid;border-color:#ddd #666 #666 #ddd;background:#DDD;color:#000;cursor:pointer;vertical-align:middle}
-.step{width:592px;margin:2px auto}
-.step span{display:inline-block;background-color:#eee;width:146px;border:solid 1px #fff;font-size:12px;text-align:center}
-.step span b{font-size:18px}
-.step span.cur{background-color:#62C0FF;width:146px;color:#fff}
-.ac{text-align:center}
+			h3 {
+				font-size: 18px;
+				font-family: "ï¿½ï¿½ï¿½ï¿½";
+				font-weight: 300;
+				text-indent: 25px
+			}
 
-.blue{color:blue}.fl{float:left}.fr{float:right}.clear{clear:both}
-.hide{display:none}
-</style>
-<script type="text/javascript">
-var $=function (id){return document.getElementById(id)}
-</script>
-</head>
-<body>
-<div id='installbox'>
-	<div class='msgtitle'>Maxcms5.2°²×°Ïòµ¼ &gt;&gt; <%=title%></div>
-	<div class="step">
-		<%
-			echo "<span"&cur(1)&"><b>1.</b>»ù±¾ÉèÖÃ</span><span"&cur(2)&"><b>2.</b>Êý¾Ý¿âÅäÖÃ</span><span"&cur(3)&"><b>3.</b>Êý¾Ý¿âÉý¼¶</span><span"&cur(4)&"><b>4.</b>Íê³É°²×°</span>"
-		%>
-	</div>
-	<div id='msgbody'>
-		<h3 style="clear:both;"><%=tips%></h3>
-<%
-End Sub
+			label {
+				display: inline-block
+			}
 
-Sub Foot
-%>
-	</div>
-	<div id='msgbottom'>Powered By<%=siteName%></div>
-</div>
-</body>
-</html>
-<%
-End Sub
+			input {
+				border-width: 0
+			}
 
-Sub Main()
-Head "Ðí¿ÉÐ­Òé","Âí¿ËË¹CMSÊ¹ÓÃÐí¿ÉÐ­Òé",0
-%>
-<div class="ac"><textarea style="width:560px;border:4px solid #C8E9FF;font-size:12px;" rows="15" readonly>
-&nbsp;&nbsp;&nbsp;&nbsp;ÔÚÄúÊ¹ÓÃ±¾Èí¼þÇ°£¬Çë×ÐÏ¸ÔÄ¶ÁÒÔÏÂÐÅÏ¢¡£³ý±¾Ð­ÒéÖÐÃ÷È·¸³ÓèÓÃ»§µÄÈ¨Àû¡¢ÆäËüÈ¨Àû¾ù±£Áô¡£Èç¹ûÄú²»Í¬ÒâÒÔÏÂÈí¼þÊ¹ÓÃÐí¿ÉÐ­Òé£¬Äú²»Ó¦×¢²á/ÏÂÔØ±¾Èí¼þ£¬ÇëÍ£Ö¹Ê¹ÓÃ£¬²¢½«Æä´ÓÄúµÄµçÄÔÖÐÉ¾³ý¡£
+			.inpt {
+				border: 1px solid #CCC;
+				height: 18px;
+				line-height: 15px;
+				width: 200px;
+				background: #F9F9F9 none
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;±¾Ð­Òé½öÕë¶Ôµ±Ç°°æ±¾¡¶MaxCMS¡·V5.1Èí¼þÓÐÐ§¡£±¾Èí¼þÊÜÖÐ»ªÈËÃñ¹²ºÍ¹úºÍÖø×÷È¨·¨¼°¹ú¼ÊÖø×÷È¨ÌõÔ¼ºÍÆäËüÖªÊ¶²úÈ¨·¨¼°ÌõÔ¼µÄ±£»¤£¬ÆäËùÓÐÖªÊ¶²úÈ¨¹éMAXCMSËùÓÐ¡£
+			textarea {
+				border: 1px solid;
+				border-color: #666 #ccc #ccc #666;
+				background: #F9F9F9;
+				color: #333;
+				padding: 5px 1px
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;±¾Èí¼þ²úÆ·£¨°üÀ¨µ«²»ÏÞÓÚ±¾Èí¼þ²úÆ·ÖÐËùº¬µÄÈÎºÎÍ¼Ïó¡¢ÕÕÆ¬¡¢¶¯»­¡¢Â¼Ïñ¡¢Â¼Òô¡¢ÒôÀÖ¡¢ÎÄ×ÖºÍ¸½¼Ó³ÌÐò(dll¡¢exeµÈ)£©¡¢Ëæ¸½µÄ°ïÖú²ÄÁÏ¡¢¼°±¾Èí¼þ²úÆ·µÄÈÎºÎ¸±±¾µÄÒ»ÇÐËùÓÐÈ¨ºÍÖªÊ¶²úÈ¨£¬¾ùÓÉMAXCMSÓµÓÐ¡£ÓÃ»§²»µÃµ¥¶À¸´ÖÆºÍÐÞ¸ÄÕâÐ©²ÄÁÏ¡£ 
+			#installbox {
+				background-color: white;
+				border: 1px solid #1B76B7;
+				margin: 0 auto;
+				width: 600px;
+				text-align: left;
+				margin-top: 2em
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;ÓÃ»§²»µÃ¶Ô±¾Èí¼þ²úÆ·½øÐÐ·´Ïò¹¤³Ì£¨reverse engineer£©¡¢·´Ïò±àÒë£¨decompile£©»ò·´»ã±à£¨disassemble£©£¬Î¥ÕßÊôÓÚÇÖÈ¨ÐÐÎª£¬²¢×ÔÐÐ³Ðµ£ÓÉ´Ë²úÉúµÄ²»Àûºó¹û¡£ 
+			.msgtitle {
+				padding: 3px 3px;
+				color: white;
+				font-weight: 700;
+				line-height: 21px;
+				height: 25px;
+				font-size: 12px;
+				border-bottom: 1px solid #1B76B7;
+				text-indent: 3px;
+				background-color: #1B76B7
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;±¾Èí¼þ²úÆ·ÎªÃâ·ÑÈí¼þ£¬ÓÃ»§¿ÉÒÔ·ÇÉÌÒµÐÔµØÏÂÔØ¡¢°²×°¡¢¸´ÖÆºÍÉ¢·¢±¾Èí¼þ²úÆ·¡£±¾Èí¼þ²»µÃÓÃÓÚ´ÓÊÂÎ¥·´ÖÐ¹úÈËÃñ¹²ºÍ¹úÏà¹Ø·¨ÂÉËù½ûÖ¹µÄ»î¶¯£¬MAXCMS¶ÔÓÚÓÃ»§ÉÃ×ÔÊ¹ÓÃ±¾Èí¼þ´ÓÊÂÎ¥·¨»î¶¯²»³Ðµ£ÈÎºÎÔðÈÎ£¨°üÀ¨µ«²»ÏÞÓÚÐÌÊÂÔðÈÎ¡¢ÐÐÕþÔðÈÎ¡¢ÃñÊÂÔðÈÎ£©¡£Èç¹ûÐèÒª½øÐÐÉÌÒµÐÔµÄÏúÊÛ¡¢¸´ÖÆºÍÉ¢·¢£¬ÀýÈçÈí¼þÔ¤×°ºÍÀ¦°ó£¬±ØÐë»ñµÃMAXCMSµÄÊÚÈ¨ºÍÐí¿É¡£ 
+			#msgbody {
+				font-size: 12px;
+				line-height: 25px;
+				padding-top: 1em;
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;¼øÓÚÓÃ»§¼ÆËã»úÈíÓ²¼þ»·¾³µÄ²îÒìÐÔºÍ¸´ÔÓÐÔ£¬±¾Èí¼þËùÌá¹©µÄ¸÷Ïî¹¦ÄÜ²¢²»ÄÜ±£Ö¤ÔÚÈÎºÎÇé¿öÏÂ¶¼ÄÜÕý³£Ö´ÐÐ»ò´ïµ½ÓÃ»§ËùÆÚÍûµÄ½á¹û¡£ÓÃ»§Ê¹ÓÃ±¾Èí¼þËù²úÉúµÄÒ»ÇÐºó¹û£¬MAXCMS²»³Ðµ£ÈÎºÎÔðÈÎ¡£ 
+			#msgbottom {
+				text-align: center;
+				height: 20px;
+				line-height: 20px;
+				font-size: 12px;
+				background-color: #1b76b7;
+				color: #FFF
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;±¾Èí¼þ¾ßÓÐ×Ô¶¯Éý¼¶¹¦ÄÜ£¬ÒÔ±ã¼°Ê±ÎªÓÃ»§Ìá¹©ÐÂ¹¦ÄÜºÍÐÞÕýÈí¼þÖÐµÄBUG¡£Í¬Ê±MAXCMS±£Ö¤±¾Èí¼þµÄÉý¼¶Ä£¿éÖÐ²»º¬ÓÐÈÎºÎÖ¼ÔÚÆÆ»µÓÃ»§¼ÆËã»úµÄÊý¾ÝºÍ»ñÈ¡ÓÃ»§ÒþË½ÐÅÏ¢µÄ¶ñÒâ´úÂë£¬²»º¬ÓÐÈÎºÎ¸ú×Ù¡¢¼àÊÓÓÃ»§¼ÆËã»úºÍ»ò²Ù×÷ÐÐÎªµÄ¹¦ÄÜ´úÂë£¬²»»á¼à¿ØÓÃ»§ÍøÉÏ¡¢ÍøÏÂµÄÐÐÎª»òÐ¹Â©ÓÃ»§ÒþË½¡£ 
+			.btn {
+				margin: 3px 0;
+				padding: 2px 5px;
+				*padding: 4px 5px 1px;
+				border: 1px solid;
+				border-color: #ddd #666 #666 #ddd;
+				background: #DDD;
+				color: #000;
+				cursor: pointer;
+				vertical-align: middle
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;±¾Èí¼þÎªÃâ·Ñ²úÆ·¡£MAXCMSÎª±¾Èí¼þ²úÆ·Ìá¹©Email/WebµÈÐÎÊ½µÄ²úÆ·Ö§³Ö¡£ 
+			.step {
+				width: 592px;
+				margin: 2px auto
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;±¾Èí¼þ¾­¹ýÏêÏ¸µÄ²âÊÔ£¬µ«²»ÄÜ±£Ö¤ÓëËùÓÐµÄÈíÓ²¼þÏµÍ³ÍêÈ«¼æÈÝ¡£Èç¹û³öÏÖ²»¼æÈÝµÄÇé¿ö£¬ÓÃ»§¿ÉÍ¨¹ýµç×ÓÓÊ¼þ½«Çé¿ö±¨¸æMAXCMS£¬»ñµÃ¼¼ÊõÖ§³Ö¡£Èç¹ûÎÞ·¨½â¾ö¼æÈÝÐÔÎÊÌâ£¬ÓÃ»§¿ÉÒÔÐ¶ÔØ±¾Èí¼þ¡£³ý±¾Èí¼þ×ÔÉíµÄÃ÷ÏÔÖÊÁ¿È±ÏÝÍâ£¬MAXCMS¶ÔÈÎºÎÒòÆäËûÔ­ÒòÔÚÊ¹ÓÃ±¾Èí¼þÊ±¿ÉÄÜ¶ÔÓÃ»§Ôì³ÉµÄËðº¦²»¸ºÔðÈÎ£¬ÕâÐ©Ëðº¦¿ÉÄÜÀ´×ÔÓÚÓëÓÃ»§°²×°Ê¹ÓÃµÄÆäËûÈí¼þµÄ³åÍ»£¬»òÓÉÓÚ²»ÄÜÊ¹ÓÃ±¾²úÆ·¶øÔì³ÉµÄËðº¦£¬°üÀ¨£¨µ«²»ÏÞÓÚ£©Ö±½Ó»ò¼ä½ÓµÄ¸öÈËËðº¦¡¢ÉÌÒµÓ®ÀûµÄÉ¥Ê§¡¢Ã³Ò×ÖÐ¶Ï¡¢ÉÌÒµÐÅÏ¢µÄ¶ªÊ§»òÈÎºÎÆäËü½ðÇ®ËðÊ§£¬²»ÂÛ·¢ÉúºÎÖÖÇé¿ö¡£ 
+			.step span {
+				display: inline-block;
+				background-color: #eee;
+				width: 146px;
+				border: solid 1px #fff;
+				font-size: 12px;
+				text-align: center
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;ÓÉÓÚ±¾Èí¼þ²úÆ·¿ÉÒÔÍ¨¹ýÍøÂçµÈÍ¾¾¶ÏÂÔØ¡¢´«²¥£¬¶ÔÓÚ´Ó·ÇMAXCMSÖ¸¶¨Õ¾µãÏÂÔØµÄ±¾Èí¼þ²úÆ·ÒÔ¼°´Ó·ÇMAXCMS·¢ÐÐµÄ½éÖÊÉÏ»ñµÃµÄ±¾Èí¼þ²úÆ·£¬MAXCMSÎÞ·¨±£Ö¤¸ÃÈí¼þÊÇ·ñ¸ÐÈ¾¼ÆËã»ú²¡¶¾¡¢ÊÇ·ñÒþ²ØÓÐÎ±×°µÄÌØÂåÒÁÄ¾Âí³ÌÐò»òÕßºÚ¿ÍÈí¼þ£¬²»³Ðµ£ÓÉ´ËÒýÆðµÄÖ±½ÓºÍ¼ä½ÓËðº¦ÔðÈÎ¡£ 
+			.step span b {
+				font-size: 18px
+			}
 
-&nbsp;&nbsp;&nbsp;&nbsp;Èç¹ûÓÃ»§ÔÚ°²×°ÌáÊ¾¿ò³öÏÖÊ±µã»÷¡°ÊÇ¡±£¬¼´±íÃ÷ÓÃ»§ÐÅÈÎMAXCMS£¬×ÔÔ¸Ñ¡Ôñ°²×°±¾Èí¼þ£¬²¢½ÓÊÜ±¾Ð­ÒéËùÓÐÌõ¿î¡£Èç¹ûÓÃ»§²»½ÓÊÜ±¾Ð­Òé£¬²»Ô¸°²×°±¾Èí¼þ£¬Çëµã»÷¡°·ñ¡±
+			.step span.cur {
+				background-color: #62C0FF;
+				width: 146px;
+				color: #fff
+			}
+
+			.ac {
+				text-align: center
+			}
+
+			.blue {
+				color: blue
+			}
+
+			.fl {
+				float: left
+			}
+
+			.fr {
+				float: right
+			}
+
+			.clear {
+				clear: both
+			}
+
+			.hide {
+				display: none
+			}
+		</style>
+		<script type="text/javascript">
+			var $ = function (id) { return document.getElementById(id) }
+		</script>
+	</head>
+
+	<body>
+		<div id='installbox'>
+			<div class='msgtitle'>Maxcms5.2ï¿½ï¿½×°ï¿½ï¿½ &gt;&gt; <%=title%>
+			</div>
+			<div class="step">
+				<% echo "<span" &cur(1)&"><b>1.</b>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+					<span"&cur(2)&"><b>2.</b>ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+						<span"&cur(3)&"><b>3.</b>ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½</span>
+							<span"&cur(4)&"><b>4.</b>ï¿½ï¿½É°ï¿½×°</span>"
+								%>
+			</div>
+			<div id='msgbody'>
+				<h3 style="clear:both;">
+					<%=tips%>
+				</h3>
+				<% End Sub Sub Foot %>
+			</div>
+			<div id='msgbottom'>Powered By<%=siteName%>
+			</div>
+		</div>
+	</body>
+
+	</html>
+	<% End Sub Sub Main() Head "ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½" ,"ï¿½ï¿½ï¿½ï¿½Ë¹CMSÊ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½",0 %>
+		<div class="ac"><textarea style="width:560px;border:4px solid #C8E9FF;font-size:12px;" rows="15" readonly>
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½é£¬ï¿½ï¿½ï¿½ï¿½Ó¦×¢ï¿½ï¿½/ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£Ö¹Ê¹ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ç°ï¿½æ±¾ï¿½ï¿½MaxCMSï¿½ï¿½V5.1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ñ¹²ºÍ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖªÊ¶ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖªÊ¶ï¿½ï¿½È¨ï¿½ï¿½MAXCMSï¿½ï¿½ï¿½Ð¡ï¿½
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½Í¼ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½ÖºÍ¸ï¿½ï¿½Ó³ï¿½ï¿½ï¿½(dllï¿½ï¿½exeï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½æ¸½ï¿½Ä°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ÎºÎ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ÖªÊ¶ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MAXCMSÓµï¿½Ð¡ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æºï¿½ï¿½Þ¸ï¿½ï¿½ï¿½Ð©ï¿½ï¿½ï¿½Ï¡ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ã¶Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ò¹¤³Ì£ï¿½reverse engineerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¨decompileï¿½ï¿½ï¿½ò·´»ï¿½à£¨disassembleï¿½ï¿½ï¿½ï¿½Î¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³Ðµï¿½ï¿½É´Ë²ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½Òµï¿½Ôµï¿½ï¿½ï¿½ï¿½Ø¡ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Æºï¿½É¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Î¥ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ñ¹²ºÍ¹ï¿½ï¿½ï¿½Ø·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½Ä»î¶¯ï¿½ï¿½MAXCMSï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¥ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½Ðµï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½Ôµï¿½ï¿½ï¿½ï¿½Û¡ï¿½ï¿½ï¿½ï¿½Æºï¿½É¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤×°ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬±ï¿½ï¿½ï¿½ï¿½ï¿½MAXCMSï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½É¡ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ÔºÍ¸ï¿½ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½Ä¸ï¿½ï¿½î¹¦ï¿½Ü²ï¿½ï¿½ï¿½ï¿½Ü±ï¿½Ö¤ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð»ï¿½ïµ½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ê¹ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ðºï¿½ï¿½ï¿½ï¿½MAXCMSï¿½ï¿½ï¿½Ðµï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½Î¡ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½Ô±ã¼°Ê±Îªï¿½Ã»ï¿½ï¿½á¹©ï¿½Â¹ï¿½ï¿½Üºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½BUGï¿½ï¿½Í¬Ê±MAXCMSï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½Ö¼ï¿½ï¿½ï¿½Æ»ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝºÍ»ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ë½ï¿½ï¿½Ï¢ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ¸ï¿½ï¿½Ù¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ä¹ï¿½ï¿½Ü´ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Îªï¿½ï¿½Ð¹Â©ï¿½Ã»ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ñ²ï¿½Æ·ï¿½ï¿½MAXCMSÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½á¹©Email/Webï¿½ï¿½ï¿½ï¿½Ê½ï¿½Ä²ï¿½Æ·Ö§ï¿½Ö¡ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½Ä²ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü±ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Ó²ï¿½ï¿½ÏµÍ³ï¿½ï¿½È«ï¿½ï¿½ï¿½Ý¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MAXCMSï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½Ö§ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¬ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±ï¿½ï¿½ï¿½â£¬MAXCMSï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Éµï¿½ï¿½ðº¦²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½Ð©ï¿½ðº¦¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½×°Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Ê¹ï¿½Ã±ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ðº¦£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½Ö±ï¿½Ó»ï¿½ï¿½ÓµÄ¸ï¿½ï¿½ï¿½ï¿½ðº¦¡ï¿½ï¿½ï¿½ÒµÓ®ï¿½ï¿½ï¿½ï¿½É¥Ê§ï¿½ï¿½Ã³ï¿½ï¿½ï¿½Ð¶Ï¡ï¿½ï¿½ï¿½Òµï¿½ï¿½Ï¢ï¿½Ä¶ï¿½Ê§ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç®ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½Û·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½ï¿½ï¿½Ø¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´Ó·ï¿½MAXCMSÖ¸ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ô¼ï¿½ï¿½Ó·ï¿½MAXCMSï¿½ï¿½ï¿½ÐµÄ½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ÃµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½MAXCMSï¿½Þ·ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½È¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßºÚ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½É´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ÓºÍ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¡ï¿½ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ú°ï¿½×°ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½MAXCMSï¿½ï¿½ï¿½ï¿½Ô¸Ñ¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü±ï¿½Ð­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¡£ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü±ï¿½Ð­ï¿½é£¬ï¿½ï¿½Ô¸ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 </textarea>
-	<p><input type="checkbox" id="compact" onClick="$('xy').disabled=this.checked ? '' : 'disabled';"><label for="compact">½ÓÊÜÐí¿ÉÐ­Òé</label></p>
-	<p><input id="xy" type="submit" class="btn" style=" width:120px;height:30px;" onclick="if($('compact').checked) location.href='?action=one';" value="¿ªÊ¼°²×°" disabled="disabled"></p>
-</div>
-<%
-Foot
-End Sub
-
-Sub One()
-Head "»ù±¾ÉèÖÃ","»ù±¾ÐÅÏ¢",1
-if writeRole = false then alertMsg "Äúµ±Ç°¶ÔÍøÕ¾Ã»ÓÐÐ´È¨ÏÞ²»ÄÜÍê³É°²×°£¬ÇëÐÞ¸ÄÈ¨ÏÞ","":exit sub
-if go="save" then
-	dim rg,text:sitename = getForm("sitename","post"):siteurl=getForm("siteurl","post"):sitepath=getForm("sitepath","post")
-	Set rg = mainClassObj.createObject("MainClass.template"):text=loadFile(CONFIGPATH)
-	text=rg.regExpReplace(text,"sitePath=""(\S*?)""","sitePath="""&sitepath&"""")
-	text=rg.regExpReplace(text,"siteName="".*""","siteName="""&siteName&"""")
-	text=rg.regExpReplace(text,"siteUrl="".*""","siteUrl="""&siteUrl&"""")
+			<p><input type="checkbox" id="compact" onClick="$('xy').disabled=this.checked ? '' : 'disabled';"><label
+					for="compact">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½</label></p>
+			<p><input id="xy" type="submit" class="btn" style=" width:120px;height:30px;"
+					onclick="if($('compact').checked) location.href='?action=one';" value="ï¿½ï¿½Ê¼ï¿½ï¿½×°" disabled="disabled">
+			</p>
+		</div>
+		<% Foot End Sub Sub One() Head "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢",1 if writeRole=false then
+			alertMsg "ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Õ¾Ã»ï¿½ï¿½Ð´È¨ï¿½Þ²ï¿½ï¿½ï¿½ï¿½ï¿½É°ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½È¨ï¿½ï¿½" ,"":exit sub if go="save" then dim
+			rg,text:sitename=getForm("sitename","post"):siteurl=getForm("siteurl","post"):sitepath=getForm("sitepath","post")
+			Set rg=mainClassObj.createObject("MainClass.template"):text=loadFile(CONFIGPATH)
+			text=rg.regExpReplace(text,"sitePath="" (\S*?)""","sitePath="""&sitepath&"""")
+	text=rg.regExpReplace(text," siteName="" .*""","siteName="""&siteName&"""")
+	text=rg.regExpReplace(text," siteUrl="" .*""","siteUrl="""&siteUrl&"""")
 	Set rg=nothing
-	if InstallCreateTextFile(text,CONFIGPATH,"") then alertMsg "","?action=two"
-else
-	dim x:x=Request.ServerVariables("path_info"):x = split(x,"install.asp")(0):x = mid(x,2,len(x)-1)
-	sitePath= x:siteUrl=Request.ServerVariables("HTTP_HOST")
-%>
-<div style="width:560px;margin:0 auto">
-<form action="?action=<%=ac%>&go=save" method="post" enctype="application/x-www-form-urlencoded">
-	<input class="inpt" type="hidden" name="sitepath" value="<%=sitePath%>" />
-	<p>ÍøÕ¾Ãû³Æ£º<input type="text" class="inpt" name="sitename" value="<%=siteName%>" /></p>
-	<p>ÍøÕ¾µØÖ·£º<input type="text" class="inpt" name="siteurl" value="<%=siteUrl%>" /> <span class="blue">(×Ô¶¯»ñÈ¡,ÈçÓÐÎó²îÇëÐÞ¸Ä)</span></p>
-	<p class="blue"><br/>×¢Òâ£º°²×°Maxcms5.2£¬ÐèÒª½«ÍøÕ¾Ä¿Â¼ÉèÖÃÐÞ¸Ä¡¢Ð´ÈëÈ¨ÏÞ¡£</p>
-	<p><input type="button" class="btn fl" value="&lt;&lt;ÉÏÒ»²½" onclick="location.href='?action=main';"/><input type="submit" class="btn fr" value="ÏÂÒ»²½&gt;&gt;"/></p>
-	<div class="clear"><br/></div>
-</form>
-</div>
-<%
-end if
-Foot
-End Sub
-
-Sub two()
-Head "Êý¾Ý¿âÅäÖÃ","Êý¾Ý¿âÁ¬½ÓÅäÖÃ",2
-if go="save" then
-	DataBase
-else
-	Dim x(1),y(1),z:x(databaseType)=" selected":y(databaseType)=" class=""hide"""
-	if not isExistFile(accessFilePath) then
-		z=split(accessFilePath,"/")
-		if ubound(z)>2 then
-			z(1)=sitepath
-		else
-			z(0)="/"&sitepath
-		end if
-		accessFilePath=replace(join(z,"/"),"//","/")
-	end if
-%>
-<div style="width:560px;margin:0 auto">
-<form action="?action=<%=ac%>&go=save" method="post" enctype="application/x-www-form-urlencoded">
-	<p>Êý¾Ý¿âÀàÐÍ£º<select name="databasetype" onchange="toogle()">
-	<%
-		echo "<option value=""0"""&x(0)&">Access</option>"
-		echo "<option value=""1"""&x(1)&">MS-SqlServer</option>"
-	%>
-	</select></p>
-	<div id="acc">
-		<p>ACCESSÂ·¾¶£º<input type="text" class="inpt" name="accessfilepath" value="<%=accessfilepath%>"/></p>
-		<p><span class="blue">1.³ÌÐò°²×°ÔÚ¸ùÄ¿Â¼ÏÂ£º /inc/datas.asp</span></p>
-		<p><span class="blue">2.¶þ¼¶Ä¿Â¼ÏÂ£º /¶þ¼¶Ä¿Â¼Ãû/inc/datas.asp</span></p>
-	</div>
-	<div id="sql">
-		<p>·þÎñÆ÷Ãû³Æ£º<input class="inpt" type="text" name="databaseserver" value="<%=databaseServer%>" /> <font color=red>*</font>SQL·þÎñÆ÷IPµØÖ·»òÃû³Æ</p>
-		<p>Êý¾Ý¿âÃû³Æ£º<input class="inpt" type="text" name="databasename" value="<%=databaseName%>" /></p>
-		<p>Êý¾Ý±íÓÃ»§£º<input class="inpt" type="text" name="tableuser" value="<%=tableuser%>" /> ¿É²»Ìî,Ö»ÓÐÇ¨·þÎñÆ÷Ê±»¹Ô­±¸·ÝµÄ±í²Å´øÓÐ±íÓÃ»§</p>
-		<p>Êý¾Ý¿âÕÊºÅ£º<input class="inpt" type="text" name="databaseuser" value="<%=databaseUser%>" /></p>
-		<p>Êý¾Ý¿âÃÜÂë£º<input class="inpt" type="text" name="databasepwd" value="<%=databasePwd%>" /></p>
-		<p><span class="blue">(ÐÂÊÖ½¨ÒéÊ¹ÓÃACCESSÊý¾Ý¿â£»SqlServerÊÊºÏÓÐÒ»¶¨»ù´¡µÄÕ¾³¤)</span></p>
-	</div>
-	<p><input type="button" class="btn fl" value="&lt;&lt;ÉÏÒ»²½" onclick="location.href='?action=one';"/><input type="submit" class="btn fr" value="ÏÂÒ»²½&gt;&gt;"/></p>
-	<div class="clear"><br/></div>
-</form>
-</div>
-<script type="text/javascript">
-function toogle(){
-	var x=document.getElementsByName('databasetype')[0],id=['acc','sql'];
-	for(var i=0;i<id.length;i++){
-		$(id[i]).style.display = i!=x.selectedIndex? 'none' : '';
-	}
-}
-toogle();
-</script>
-<%
-end if
-Foot
-End Sub
-
-Sub three()
-Dim i:Head "Ð£ÑéÊý¾Ý¿â","Êý¾Ý¿âÉý¼¶",3
-echo "<div style=""width:560px;margin:0 auto""><textarea style=""width:552px;border:4px solid #C8E9FF;font-size:12px;"" rows=""15"" readonly>"
-
-'on error resume next:err.clear
+	if InstallCreateTextFile(text,CONFIGPATH,"") then alertMsg ""," ?action=two" else dim
+			x:x=Request.ServerVariables("path_info"):x=split(x,"install.asp")(0):x=mid(x,2,len(x)-1)
+			sitePath=x:siteUrl=Request.ServerVariables("HTTP_HOST") %>
+			<div style="width:560px;margin:0 auto">
+				<form action="?action=<%=ac%>&go=save" method="post" enctype="application/x-www-form-urlencoded">
+					<input class="inpt" type="hidden" name="sitepath" value="<%=sitePath%>" />
+					<p>ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½Æ£ï¿½<input type="text" class="inpt" name="sitename" value="<%=siteName%>" /></p>
+					<p>ï¿½ï¿½Õ¾ï¿½ï¿½Ö·ï¿½ï¿½<input type="text" class="inpt" name="siteurl" value="<%=siteUrl%>" /> <span
+							class="blue">(ï¿½Ô¶ï¿½ï¿½ï¿½È¡,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½)</span></p>
+					<p class="blue"><br />×¢ï¿½â£ºï¿½ï¿½×°Maxcms5.2ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Õ¾Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä¡ï¿½Ð´ï¿½ï¿½È¨ï¿½Þ¡ï¿½</p>
+					<p><input type="button" class="btn fl" value="&lt;&lt;ï¿½ï¿½Ò»ï¿½ï¿½"
+							onclick="location.href='?action=main';" /><input type="submit" class="btn fr"
+							value="ï¿½ï¿½Ò»ï¿½ï¿½&gt;&gt;" /></p>
+					<div class="clear"><br /></div>
+				</form>
+			</div>
+			<% end if Foot End Sub Sub two() Head "ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½" ,"ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",2 if go="save" then DataBase else Dim
+				x(1),y(1),z:x(databaseType)=" selected" :y(databaseType)=" class=""hide""" if not
+				isExistFile(accessFilePath) then z=split(accessFilePath,"/") if ubound(z)>2 then
+				z(1)=sitepath
+				else
+				z(0)="/"&sitepath
+				end if
+				accessFilePath=replace(join(z,"/"),"//","/")
+				end if
+				%>
+				<div style="width:560px;margin:0 auto">
+					<form action="?action=<%=ac%>&go=save" method="post" enctype="application/x-www-form-urlencoded">
+						<p>ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Í£ï¿½<select name="databasetype" onchange="toogle()">
+								<% echo "<option value=""0""" &x(0)&">Access</option>"
+									echo "<option value="" 1"""&x(1)&">MS-SqlServer</option>"
+									%>
+							</select></p>
+						<div id="acc">
+							<p>ACCESSÂ·ï¿½ï¿½ï¿½ï¿½<input type="text" class="inpt" name="accessfilepath"
+									value="<%=accessfilepath%>" /></p>
+							<p><span class="blue">1.ï¿½ï¿½ï¿½ï¿½×°ï¿½Ú¸ï¿½Ä¿Â¼ï¿½Â£ï¿½ /inc/datas.asp</span></p>
+							<p><span class="blue">2.ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Â£ï¿½ /ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½/inc/datas.asp</span></p>
+						</div>
+						<div id="sql">
+							<p>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½<input class="inpt" type="text" name="databaseserver"
+									value="<%=databaseServer%>" />
+								<font color=red>*</font>SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+							</p>
+							<p>ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Æ£ï¿½<input class="inpt" type="text" name="databasename"
+									value="<%=databaseName%>" /></p>
+							<p>ï¿½ï¿½ï¿½Ý±ï¿½ï¿½Ã»ï¿½ï¿½ï¿½<input class="inpt" type="text" name="tableuser" value="<%=tableuser%>" />
+								ï¿½É²ï¿½ï¿½ï¿½,Ö»ï¿½ï¿½Ç¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ÝµÄ±ï¿½ï¿½Å´ï¿½ï¿½Ð±ï¿½ï¿½Ã»ï¿½</p>
+							<p>ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ÊºÅ£ï¿½<input class="inpt" type="text" name="databaseuser" value="<%=databaseUser%>" />
+							</p>
+							<p>ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ë£º<input class="inpt" type="text" name="databasepwd" value="<%=databasePwd%>" />
+							</p>
+							<p><span class="blue">(ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ACCESSï¿½ï¿½ï¿½Ý¿â£»SqlServerï¿½Êºï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½)</span></p>
+						</div>
+						<p><input type="button" class="btn fl" value="&lt;&lt;ï¿½ï¿½Ò»ï¿½ï¿½"
+								onclick="location.href='?action=one';" /><input type="submit" class="btn fr"
+								value="ï¿½ï¿½Ò»ï¿½ï¿½&gt;&gt;" /></p>
+						<div class="clear"><br /></div>
+					</form>
+				</div>
+				<script type="text/javascript">
+					function toogle() {
+						var x = document.getElementsByName('databasetype')[0], id = ['acc', 'sql'];
+						for (var i = 0; i < id.length; i++) {
+							$(id[i]).style.display = i != x.selectedIndex ? 'none' : '';
+						}
+					}
+					toogle();
+				</script>
+				<% end if Foot End Sub Sub three() Dim i:Head "Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½" ,"ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½",3
+					echo "<div style=""width:560px;margin:0 auto""><textarea style=""width:552px;border:4px solid #C8E9FF;font-size:12px;"" rows=""15"" readonly>" 'on error resume next:err.clear
 if not isNumeric(go) then
 	for i=0 to 2
 		Select Case i
@@ -220,366 +313,538 @@ if not isNumeric(go) then
 			Case 2:CreateIndexs
 			Case else:exit for
 		End Select
-		if err then echo "´íÎó£º" & err.description:exit for
+		if err then echo "ï¿½ï¿½ï¿½ï¿½" & err.description:exit for
 	next
 end if
 if go<>"0" then DoUPDATA
 
-echo "</textarea><p><input type=""button"" class=""btn fl"" value=""&lt;&lt;ÉÏÒ»²½"" onclick=""location.href='?action=two';""/><input type=""button"" class=""btn fr"" value=""ÏÂÒ»²½&gt;&gt;"" onclick="""&ifthen(err.number<>0,"alert('Éý¼¶Êý¾Ý¿â¹ý³ÌÖÐ·¢ÏÖ´íÎó£¬Çë¼ì²é');","location.href='?action=four';")&"""/></p><div class=""clear""><br/></div></div>"
-if go<>"0" then echo "<script type=""text/javascript"">window.setTimeout(function (){location.href='?action=three&go="&go&"'},1000);</script>"
-Foot
-End Sub
+echo "</textarea><p><input type=""button"" class=""btn fl"" value=""&lt;&lt;ï¿½ï¿½Ò»ï¿½ï¿½"" onclick=""location.href='
+					?action=two';"" /><input type="" button"" class="" btn fr"" value="" ï¿½ï¿½Ò»ï¿½ï¿½&gt;&gt;""
+					onclick="""&ifthen(err.number<>0," alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');","location.href='?action=four'
+					;")&""" /></p>
+				<div class="" clear""><br /></div>
+				</div>"
+				if go<>"0" then echo "
+					<script type=""
+						text/javascript"">window.setTimeout(function (){location.href='?action=three&go="&go&"'},1000);</script>
+					"
+					Foot
+					End Sub
 
-Sub four()
-dim rs:Head "Íê³É°²×°","Íê³É°²×°",4
-if go="save" then
-	Dim un,p1,p2,sitemode,playermode,text,rg:un=getForm("un","post"):p1=getForm("pw1","post"):p2=getForm("pw2","post"):sitemode=getForm("sitemode","post"):playermode=getForm("playermode","post")
-	if isNul(sitemode) or isNul(playermode) then alertMsg "ÇëÑ¡ÔñÍøÕ¾Ä£Ê½ºÍ²¥·ÅÄ£Ê½","":last:die ""
-	if isNul(un) then alertMsg "¹ÜÀíÕËºÅ²»ÄÜÎª¿Õ","":last:die ""
-	if isNul(p1) then alertMsg "¹ÜÀíÃÜÂë²»ÄÜÎª¿Õ","":last:die ""
-	if p1<>p2 then alertMsg "Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ","":last:die ""
-	set rs=conn.db("SELECT * FROM m_manager WHERE m_username='"&un&"'","records3")
-	if rs.eof then
-		rs.addnew
-		rs("m_username")=un:rs("m_level")=0:rs("m_state")=1
-	end if
-	rs("m_pwd")=md5(p1,32)
-	rs.update
-	rs.close:set rs=nothing
-	Set rg = mainClassObj.createObject("MainClass.template")
-	text=loadFile(CONFIGPATH)
-	text=rg.regExpReplace(text,"runMode=""(\S+?)"""&vbcrlf,"runMode="""&sitemode&""""&vbcrlf)
-	text=rg.regExpReplace(text,"gbookPwd=""(\S+?)"""&vbcrlf,"gbookPwd="""&replaceStr(p1,"""","")&""""&vbcrlf)
-	InstallCreateTextFile text,CONFIGPATH,""
+					Sub four()
+					dim rs:Head "ï¿½ï¿½É°ï¿½×°","ï¿½ï¿½É°ï¿½×°",4
+					if go="save" then
+					Dim
+					un,p1,p2,sitemode,playermode,text,rg:un=getForm("un","post"):p1=getForm("pw1","post"):p2=getForm("pw2","post"):sitemode=getForm("sitemode","post"):playermode=getForm("playermode","post")
+					if isNul(sitemode) or isNul(playermode) then alertMsg "ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Õ¾Ä£Ê½ï¿½Í²ï¿½ï¿½ï¿½Ä£Ê½","":last:die ""
+					if isNul(un) then alertMsg "ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅ²ï¿½ï¿½ï¿½Îªï¿½ï¿½","":last:die ""
+					if isNul(p1) then alertMsg "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½ï¿½","":last:die ""
+					if p1<>p2 then alertMsg "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½ï¿½","":last:die ""
+						set rs=conn.db("SELECT * FROM m_manager WHERE m_username='"&un&"'","records3")
+						if rs.eof then
+						rs.addnew
+						rs("m_username")=un:rs("m_level")=0:rs("m_state")=1
+						end if
+						rs("m_pwd")=md5(p1,32)
+						rs.update
+						rs.close:set rs=nothing
+						Set rg = mainClassObj.createObject("MainClass.template")
+						text=loadFile(CONFIGPATH)
+						text=rg.regExpReplace(text,"runMode=""(\S+?)"""&vbcrlf,"runMode="""&sitemode&""""&vbcrlf)
+						text=rg.regExpReplace(text,"gbookPwd=""(\S+?)"""&vbcrlf,"gbookPwd="""&replaceStr(p1,"""","")&""""&vbcrlf)
+						InstallCreateTextFile text,CONFIGPATH,""
 
-	text=loadFile(PLAYERJSPATH)
-	text=rg.regExpReplace(text,"var\sautoPlay=""\d+"";","var autoPlay="""&playermode&""";")
-	InstallCreateTextFile text,PLAYERJSPATH,""
+						text=loadFile(PLAYERJSPATH)
+						text=rg.regExpReplace(text,"var\sautoPlay=""\d+"";","var autoPlay="""&playermode&""";")
+						InstallCreateTextFile text,PLAYERJSPATH,""
 
-	text=loadFile(INDEXPATH)
-	text=rg.regExpReplace(text,"<"&"%"&vbcrlf&"alertMsg ""ÇëÏÈ°²×°³ÌÐò£¬ÕýÔÚÌø×ªµ½°²×°ÎÄ¼þ""\,""install\.asp""","<"&"%")
-	InstallCreateTextFile text,INDEXPATH,""
+						text=loadFile(INDEXPATH)
+						text=rg.regExpReplace(text,"<"&"%"&vbcrlf&"alertMsg ""
+							ï¿½ï¿½ï¿½È°ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½×°ï¿½Ä¼ï¿½""\,""install\.asp""","<"&"%") InstallCreateTextFile
+							text,INDEXPATH,"" text=loadFile(INSTALLPATH) text=rg.regExpReplace(text,"-->"&vbcrlf&"
+							<"&"%"&vbcrlf,"-->"&vbcrlf&"<"&"%"&vbcrlf&"die "" ï¿½ï¿½Í£ï¿½ï¿½×°<br>(*^__^*)
+									ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ù´Î°ï¿½×°ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ë¼´ï¿½ï¿½"""&vbcrlf)
+									InstallCreateTextFile text,INSTALLPATH,""
+									set rg=nothing
+									echo "<div style="" width:300px;height:50px;margin:50px auto"">
+										<p><input type="" button"" class="" btn"" style="" width:120px;height:30px;""
+												value="" ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½Ò³"" onclick="" javascript:location.href='index.asp'
+												;"" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="" button""
+												class="" btn"" style="" width:120px;height:30px;"" value="" ï¿½ï¿½Â½ï¿½ï¿½Õ¾ï¿½ï¿½Ì¨""
+												onclick="" javascript:location.href='admin/index.asp' ;"" /></p>
+										<br /><br />
+									</div>"
+									else
+									set rs = conn.db("SELECT * FROM m_manager","records1")
+									%>
+									<div style="width:560px;margin:0 auto">
+										<form action="?action=<%=ac%>&go=save" id="form1" method="post"
+											enctype="application/x-www-form-urlencoded">
+											<p>ï¿½ï¿½Õ¾Ä£Ê½ï¿½ï¿½<input type="radio" name="sitemode" id="sitemode0" value="dynamic"
+													checked /><label for="sitemode0">ï¿½ï¿½Ì¬Ä£Ê½</label> <input type="radio"
+													name="sitemode" id="sitemode1" value="static" /><label
+													for="sitemode1">ï¿½ï¿½Ì¬Ä£Ê½</label> ï¿½ï¿½<font color="blue">
+													ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½ÏµÍ³ï¿½ï¿½Ì¨Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</font>ï¿½ï¿½</p>
+											<p>ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½<input type="radio" name="playermode" id="m0" value="1" /><label
+													for="m0">Õ¾ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½(<font color="blue">ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</font>
+													)</label> <input type="radio" name="playermode" id="m1"
+													value="0" /><label for="m1">Õ¾ï¿½â²¥ï¿½ï¿½ï¿½ï¿½(<font color="blue">Ö¸ï¿½ï¿½ÆµÕ¾ï¿½á¹©ï¿½ï¿½ï¿½Ãµï¿½Ö·
+													</font>)</label></p>
+											<p>1.ï¿½ï¿½ï¿½à²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½Ì¨ï¿½ï¿½<font color="red">"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"</font>ï¿½ï¿½ï¿½Þ¸ï¿½</p>
+											<hr />
+											<% if not rs.eof then echo "<p>Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅ£ï¿½<select name=""un"" id=""un"">" do
+												while(not rs.eof) echo "<option value=""" &rs("m_username")&""">
+												"&rs("m_username")&"</option>"
+												rs.movenext
+												loop
+												echo "</select></p>"
+												else
+												echo "<p>ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ËºÅ£ï¿½<input class="" inpt"" type="" text"" name="" un""
+														id="" un"" value="""" /></p>"
+												end if
+												rs.close:set rs=nothing
+												%>
+												<p>ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£º<input class="inpt" type="password" name="pw1" id="pw1"
+														value="" /></p>
+												<p>È·ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£º<input class="inpt" type="password" name="pw2" id="pw2"
+														value="" /></p>
+												<p><input type="button" class="btn fl" value="&lt;&lt;ï¿½ï¿½Ò»ï¿½ï¿½"
+														onclick="location.href='?action=three';" /><input type="button"
+														class="btn fr" value="ï¿½ï¿½É°ï¿½×°" onclick="chform()" /></p>
+												<div class="clear"><br /></div>
+										</form>
+									</div>
+									<script type="text/javascript">
+										function chform() {
+											var un = $('un'), val = un.nodeName.toUpperCase() == 'SELECT' ? un.options[un.selectedIndex].value : un.value, p1 = $('pw1').value, p2 = $('pw2').value;
+											if (!$('m0').checked && !$('m1').checked) {
+												$('m1').parentNode.style.backgroundColor = '#eee';
+												alert('ï¿½ï¿½Ñ¡ï¿½ñ²¥·ï¿½Ä£Ê½');
+											} else if (val.replace(/(^\s*)|(\s*$)/ig, '') == '') {
+												alert('ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅ²ï¿½ï¿½ï¿½Îªï¿½ï¿½');
+											} else if (p1 == '') {
+												alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½ï¿½');
+											} else if (p1 != p2) {
+												alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½ï¿½');
+											} else {
+												$('form1').submit();
+											}
+										}
+									</script>
+									<% end if Foot End Sub Sub DataBase Dim
+										dt,ap,ip,db,tu,du,dp:dt=getForm("databasetype","post"):ap=getForm("accessfilepath","post"):ip=getForm("databaseserver","post"):db=getForm("databasename","post"):tu=getForm("tableuser","post"):du=getForm("databaseuser","post"):dp=getForm("databasepwd","post")
+										Dim rg,text:databaseType=Cint(dt) Select Case databaseType Case 0: if isNul(ap)
+										then alertMsg "Accessï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½" ,"":last:exit sub if not
+										isExistFile(accessFilePath) then accessFilePath=ap if accessFilePath<>ap then
+										if isExistFile(accessFilePath) AND not isExistFile(ap) then moveFile
+										accessFilePath,ap,"del"
+										accessFilePath=ap
+										end if
+										if not isExistFile(accessFilePath) then CreateDataBase
+										Set rg =
+										mainClassObj.createObject("MainClass.template"):text=loadFile(CONFIGPATH)
+										text=rg.regExpReplace(text,"databaseType=(\S*\d?)","databaseType="&dt&"")
+										text=rg.regExpReplace(text,"accessFilePath=""\S*""","accessFilePath="""&
+										accessFilePath &"""")
+										Set rg=nothing
+										if InstallCreateTextFile(text,CONFIGPATH,"") then alertMsg "","?action=three"
+										Case 1:
+										if isNul(ip) then alertMsg "SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½","":last:exit sub
+										if isNul(db) then alertMsg "SQLï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½","":last:exit sub
+										if isNul(du) then alertMsg "SQLï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½","":last:exit sub
+										on error resume next
+										Dim CC,e:Set CC=Server.CreateObject(CONN_OBJ_NAME)
+										CC.ConnectionTimeout=3:CC.open "Provider=Sqloledb;Data Source="&ip&";Initial
+										Catalog="&db&";User ID="&du&";Password="&dp&";"
+										if CC.Errors.count>0 then
+										e=CC.Errors(0).NativeError:CC.close:Set CC = nothing
+										Select Case e
+										Case "17":alertMsg "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½","":last
+										Case "4060":databaseServer=ip:databaseName=db:databaseUser=du:databasePwd=dp:on
+										error goto 0:CreateDataBase 'alertMsg "ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½",""
+										Case "18456":alertMsg "ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ÊºÅ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","":last
+										Case else:alertMsg "SQL ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½","":last
+										End Select
+										else
+										CC.close:Set CC = nothing
+										end if
+										Set rg =
+										mainClassObj.createObject("MainClass.template"):text=loadFile(CONFIGPATH)
+										text=rg.regExpReplace(text,"databaseType=(\S*\d?)","databaseType="&dt&"")
+										text=rg.regExpReplace(text,"databaseServer=""\S*""","databaseServer="""& ip
+										&"""")
+										text=rg.regExpReplace(text,"databaseName=""\S*""","databaseName="""& db &"""")
+										text=rg.regExpReplace(text,"tableUser=""\S*""","tableUser="""& tu &"""")
+										text=rg.regExpReplace(text,"databaseUser=""\S*""","databaseUser="""& du &"""")
+										text=rg.regExpReplace(text,"databasePwd=""\S*""","databasePwd="""& dp &"""")
+										Set rg=nothing
+										if InstallCreateTextFile(text,CONFIGPATH,"") then alertMsg "","?action=three"
+										End Select
+										End Sub
 
-	text=loadFile(INSTALLPATH)
-	text=rg.regExpReplace(text,"-->"&vbcrlf&"<"&"%"&vbcrlf,"-->"&vbcrlf&"<"&"%"&vbcrlf&"die ""ÔÝÍ£°²×°<br>(*^__^*) ¡­¡­ÄúÒÑ¾­°²×°¹ýÁË£¬ÈçÐèÒªÔÙ´Î°²×°£¬ÇëÉ¾³ý¸ÃÎÄ¼þµÄµÚÈýÐÐ´úÂë¼´¿É"""&vbcrlf)
-	InstallCreateTextFile text,INSTALLPATH,""
-	set rg=nothing
-	echo "<div style=""width:300px;height:50px;margin:50px auto""><p><input type=""button"" class=""btn"" style=""width:120px;height:30px;"" value=""½øÈëÍøÕ¾Ê×Ò³""  onclick=""javascript:location.href='index.asp';""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=""button"" class=""btn"" style=""width:120px;height:30px;"" value=""µÇÂ½ÍøÕ¾ºóÌ¨""  onclick=""javascript:location.href='admin/index.asp';""/></p><br /><br /></div>"
-else
-	set rs = conn.db("SELECT * FROM m_manager","records1")
-%>
-<div style="width:560px;margin:0 auto">
-<form action="?action=<%=ac%>&go=save" id="form1" method="post" enctype="application/x-www-form-urlencoded">
-	<p>ÍøÕ¾Ä£Ê½£º<input type="radio"  name="sitemode" id="sitemode0" value="dynamic" checked/><label for="sitemode0">¶¯Ì¬Ä£Ê½</label> <input type="radio"  name="sitemode" id="sitemode1" value="static"/><label for="sitemode1">¾²Ì¬Ä£Ê½</label> £¨<font color="blue">ÏêÏ¸ÅäÖÃÇëµÇÂ½ÏµÍ³ºóÌ¨Õ¾µãÅäÖÃ</font>£©</p>
-	<p>²¥·ÅÄ£Ê½£º<input type="radio"  name="playermode" id="m0"  value="1"/><label for="m0">Õ¾ÄÚ²¥·ÅÆ÷(<font color="blue">¿É×Ô¶¯²¥·Å£¬¿ÉÁ¬²¥</font>)</label> <input type="radio"  name="playermode" id="m1" value="0"/><label for="m1">Õ¾Íâ²¥·ÅÆ÷(<font color="blue">Ö¸ÊÓÆµÕ¾Ìá¹©ÒýÓÃµØÖ·</font>)</label></p>
-	<p>1.¸ü¶à²¥·ÅÆ÷²ÎÊýÇëÔÚÍøÕ¾ºóÌ¨µÄ<font color="red">"²¥·ÅÆ÷ÉèÖÃ"</font>ÖÐÐÞ¸Ä</p>
-	<hr/>
-<%
-	if not rs.eof then
-		echo "<p>Ñ¡Ôñ¹ÜÀíÕËºÅ£º<select name=""un"" id=""un"">"
-		do while(not rs.eof)
-			echo "<option value="""&rs("m_username")&""">"&rs("m_username")&"</option>"
-			rs.movenext
-		loop
-		echo "</select></p>"
-	else
-		echo "<p>ÉèÖÃ¹ÜÀíÕËºÅ£º<input class=""inpt"" type=""text"" name=""un"" id=""un"" value="""" /></p>"
-	end if
-	rs.close:set rs=nothing
-%>
-	<p>ÉèÖÃ¹ÜÀíÃÜÂë£º<input class="inpt" type="password" name="pw1" id="pw1" value="" /></p>
-	<p>È·ÈÏ¹ÜÀíÃÜÂë£º<input class="inpt" type="password" name="pw2" id="pw2" value="" /></p>
-	<p><input type="button" class="btn fl" value="&lt;&lt;ÉÏÒ»²½" onclick="location.href='?action=three';"/><input type="button" class="btn fr" value="Íê³É°²×°" onclick="chform()"/></p>
-	<div class="clear"><br/></div>
-</form>
-</div>
-<script type="text/javascript">
-function chform(){
-	var un=$('un'),val=un.nodeName.toUpperCase() == 'SELECT' ? un.options[un.selectedIndex].value: un.value,p1=$('pw1').value,p2=$('pw2').value;
-	if(!$('m0').checked && !$('m1').checked){
-		$('m1').parentNode.style.backgroundColor='#eee';
-		alert('ÇëÑ¡Ôñ²¥·ÅÄ£Ê½');
-	}else if(val.replace(/(^\s*)|(\s*$)/ig,'')==''){
-		alert('¹ÜÀíÕËºÅ²»ÄÜÎª¿Õ');
-	}else if(p1==''){
-		alert('¹ÜÀíÃÜÂë²»ÄÜÎª¿Õ');
-	}else if(p1!=p2){
-		alert('Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ');
-	}else{
-		$('form1').submit();
-	}
-}
-</script>
-<%
-end if
-Foot
-End Sub
+										Function InstallCreateTextFile(Byval content,Byval fileDir,Byval code)
+										dim errid,errdes,fileobj,fileCode : fileDir=replace(fileDir, "\", "/")
+										if isNul(code) then fileCode="gbk" else fileCode=code
+										call createfolder(fileDir,"filedir")
+										on error resume next:err.clear
+										set fileobj=objFso.CreateTextFile(server.mappath(fileDir),True)
+										if IsObject(fileobj) then fileobj.Write(content):set fileobj=nothing
+										if err or not isNul(code) then
+										errid=err.number:errdes=err.description:err.clear
+										With objStream
+										.Charset=fileCode:.Type=2:.Mode=3:.Open:.Position=0
+										.WriteText content:.SaveToFile Server.MapPath(fileDir), 2
+										.Close
+										End With
+										end if
+										if err Then
+										dim h:h=LCase(Hex(err.number)):InstallCreateTextFile=false
+										echo "<font face="" ï¿½ï¿½ï¿½ï¿½"" size=2>"&vbcrlf&_
+											"<p>Microsoft VBScript ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½</font>
+										<font face="" ï¿½ï¿½ï¿½ï¿½"" size=2>ï¿½ï¿½ï¿½ï¿½ '800a"&Left("0000",4-Len(h))&h&"'</font>
+										"&vbcrlf&_
+										"<p>"&vbcrlf&_
+											"<font face="" ï¿½ï¿½ï¿½ï¿½"" size=2>FSO:"&errid&" "&errdes&"</font>"&vbcrlf&_
+											"
+										<p>"&vbcrlf&_
+											"<font face="" ï¿½ï¿½ï¿½ï¿½"" size=2>STM:"&err.number&" "&err.description&"</font>
+											"&vbcrlf&_
+											"
+										<p>"&vbcrlf&_
+											"<font face="" ï¿½ï¿½ï¿½ï¿½"" size=2>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:
+												ï¿½ï¿½ï¿½inc/config.aspï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÖ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾Ä¿Â¼ï¿½ï¿½Ð´ï¿½ï¿½È¨ï¿½ï¿½</font>"&vbcrlf
+											else
+											InstallCreateTextFile=true
+											end if
+											err.clear
+											End Function
 
+											'-----------------------------------------
+											'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½èº¯ï¿½ï¿½
+											'-----------------------------------------
 
-Sub DataBase
-Dim dt,ap,ip,db,tu,du,dp:dt=getForm("databasetype","post"):ap=getForm("accessfilepath","post"):ip=getForm("databaseserver","post"):db=getForm("databasename","post"):tu=getForm("tableuser","post"):du=getForm("databaseuser","post"):dp=getForm("databasepwd","post")
-Dim rg,text:databaseType=Cint(dt)
-	Select Case databaseType
-		Case 0:
-			if isNul(ap) then alertMsg "AccessÊý¾Ý¿âµØÖ·²»ÄÜÎª¿Õ","":last:exit sub
-			if not isExistFile(accessFilePath) then accessFilePath=ap
-			if accessFilePath<>ap then
-				if isExistFile(accessFilePath) AND not isExistFile(ap) then moveFile accessFilePath,ap,"del"
-				accessFilePath=ap
-			end if
-			if not isExistFile(accessFilePath) then CreateDataBase
-			Set rg = mainClassObj.createObject("MainClass.template"):text=loadFile(CONFIGPATH)
-			text=rg.regExpReplace(text,"databaseType=(\S*\d?)","databaseType="&dt&"")
-			text=rg.regExpReplace(text,"accessFilePath=""\S*""","accessFilePath="""& accessFilePath &"""")
-			Set rg=nothing
-			if InstallCreateTextFile(text,CONFIGPATH,"") then alertMsg "","?action=three"
-		Case 1:
-			if isNul(ip) then alertMsg "SQL·þÎñÆ÷µØÖ·²»ÄÜÎª¿Õ","":last:exit sub
-			if isNul(db) then alertMsg "SQLÊý¾Ý¿âÃû²»ÄÜÎª¿Õ","":last:exit sub
-			if isNul(du) then alertMsg "SQLÊý¾Ý¿âÓÃ»§Ãû²»ÄÜÎª¿Õ","":last:exit sub
-			on error resume next
-			Dim CC,e:Set CC=Server.CreateObject(CONN_OBJ_NAME)
-			CC.ConnectionTimeout=3:CC.open "Provider=Sqloledb;Data Source="&ip&";Initial Catalog="&db&";User ID="&du&";Password="&dp&";"
-			if CC.Errors.count>0 then
-				e=CC.Errors(0).NativeError:CC.close:Set CC = nothing
-				Select Case e
-					Case "17":alertMsg "·þÎñÆ÷Ãû³Æ´íÎó","":last
-					Case "4060":databaseServer=ip:databaseName=db:databaseUser=du:databasePwd=dp:on error goto 0:CreateDataBase			'alertMsg "Êý¾Ý¿âÃû³Æ´íÎó",""
-					Case "18456":alertMsg "Êý¾Ý¿âÕÊºÅ»òÃÜÂë´íÎó","":last
-					Case else:alertMsg "SQL Êý¾Ý¿âÉèÖÃ´íÎó","":last
-				End Select
-			else
-				CC.close:Set CC = nothing
-			end if
-			Set rg = mainClassObj.createObject("MainClass.template"):text=loadFile(CONFIGPATH)
-			text=rg.regExpReplace(text,"databaseType=(\S*\d?)","databaseType="&dt&"")
-			text=rg.regExpReplace(text,"databaseServer=""\S*""","databaseServer="""& ip &"""")
-			text=rg.regExpReplace(text,"databaseName=""\S*""","databaseName="""& db &"""")
-			text=rg.regExpReplace(text,"tableUser=""\S*""","tableUser="""& tu &"""")
-			text=rg.regExpReplace(text,"databaseUser=""\S*""","databaseUser="""& du &"""")
-			text=rg.regExpReplace(text,"databasePwd=""\S*""","databasePwd="""& dp &"""")
-			Set rg=nothing
-			if InstallCreateTextFile(text,CONFIGPATH,"") then alertMsg "","?action=three"
-	End Select
-End Sub
+											Function getConn()
+											if Not isObject(gConn) then
+											Dim connStr
+											if databaseType=1 then
+											connStr="Provider=Sqloledb;Data Source="&databaseServer&";Initial
+											Catalog="&databaseName&";User ID="&databaseUser&";Password="&databasePwd&";"
+											elseif databaseType=0 then
+											connStr="Provider=Microsoft.Jet.OLEdb.4.0;Data
+											Source="&server.mappath(accessFilePath)
+											end if
+											set gConn=server.CreateObject(CONN_OBJ_NAME)
+											gConn.open connStr
+											end if
+											SET getConn=gConn
+											End Function
 
-Function InstallCreateTextFile(Byval content,Byval fileDir,Byval code)
-	dim errid,errdes,fileobj,fileCode : fileDir=replace(fileDir, "\", "/")
-	if isNul(code) then fileCode="gbk" else fileCode=code
-	call createfolder(fileDir,"filedir")
-	on error resume next:err.clear
-	set fileobj=objFso.CreateTextFile(server.mappath(fileDir),True)
-	if IsObject(fileobj) then fileobj.Write(content):set fileobj=nothing
-	if err or not isNul(code) then
-		errid=err.number:errdes=err.description:err.clear
-		With objStream
-			.Charset=fileCode:.Type=2:.Mode=3:.Open:.Position=0
-			.WriteText content:.SaveToFile Server.MapPath(fileDir), 2
-			.Close
-		End With
-	end if
-	if err Then
-		dim h:h=LCase(Hex(err.number)):InstallCreateTextFile=false
-		echo "<font face=""ËÎÌå"" size=2>"&vbcrlf&_
-		"<p>Microsoft VBScript ÔËÐÐÊ±´íÎó</font> <font face=""ËÎÌå"" size=2>´íÎó '800a"&Left("0000",4-Len(h))&h&"'</font>"&vbcrlf&_
-		"<p>"&vbcrlf&_
-		"<font face=""ËÎÌå"" size=2>FSO:"&errid&" "&errdes&"</font>"&vbcrlf&_
-		"<p>"&vbcrlf&_
-		"<font face=""ËÎÌå"" size=2>STM:"&err.number&" "&err.description&"</font>"&vbcrlf&_
-		"<p>"&vbcrlf&_
-		"<font face=""ËÎÌå"" size=2>½â¾ö·½·¨: ¼ì²éinc/config.aspÎÄ¼þÊôÐÔ£¬²»ÄÜÎªÖ»¶Á£¬ÇëÉèÖÃÍøÕ¾Ä¿Â¼µÄÐ´ÈëÈ¨ÏÞ</font>"&vbcrlf
-	else
-		InstallCreateTextFile=true
-	end if
-	err.clear
-End Function
+											Function GetAllColumnName(ByVal table)
+											if gCols(0)<>table then
+												dim rsObj,i,ret:ret=" ,":set rsObj = conn.db("select top 1 * from
+												m_"&table&" where 1=1","records1")
+												for i=0 to rsObj.Fields.count-1:ret=ret&rsObj.Fields(i).name&",":next
+												rsObj.close:set rsObj = nothing:gCols(1)=ret:gCols(0)=table
+												end if
+												GetAllColumnName=gCols(1)
+												End Function
 
-'-----------------------------------------
-'Éý¼¶Êý¾Ý¿â±ØÐèº¯Êý
-'-----------------------------------------
+												Function isExistTable(tName)
+												dim tables:set tables =
+												getConn().OpenSchema(20,array(empty,empty,tName,"table")):isExistTable=tables.eof
+												= false:set tables = nothing
+												End Function
 
-Function getConn()
-	if Not isObject(gConn) then
-		Dim connStr
-		if databaseType=1 then
-			connStr="Provider=Sqloledb;Data Source="&databaseServer&";Initial Catalog="&databaseName&";User ID="&databaseUser&";Password="&databasePwd&";"
-		elseif databaseType=0 then
-			connStr="Provider=Microsoft.Jet.OLEdb.4.0;Data Source="&server.mappath(accessFilePath)
-		end if
-		set gConn=server.CreateObject(CONN_OBJ_NAME)
-		gConn.open connStr
-	end if
-	SET getConn=gConn
-End Function
+												Function isExistField(ByVal stable,ByVal sCol)
+												isExistField=InStr(GetAllColumnName(stable),","&sCol&",")>0
+												End Function
 
-Function GetAllColumnName(ByVal table)
-	if gCols(0)<>table then
-		dim rsObj,i,ret:ret=" ,":set rsObj = conn.db("select top 1 * from m_"&table&" where 1=1","records1")
-		for i=0 to rsObj.Fields.count-1:ret=ret&rsObj.Fields(i).name&",":next
-		rsObj.close:set rsObj = nothing:gCols(1)=ret:gCols(0)=table
-	end if
-	GetAllColumnName=gCols(1)
-End Function
+												Function isExistIndex(tName,sIndexName)
+												Dim Indexs:SET
+												Indexs=getConn().OpenSchema(12,array(empty,empty,sIndexName,empty,tName)):isExistIndex=Indexs.eof
+												= false:SET Indexs=Nothing
+												End Function
 
-Function isExistTable(tName)
-	dim tables:set tables = getConn().OpenSchema(20,array(empty,empty,tName,"table")):isExistTable=tables.eof = false:set tables = nothing
-End Function
+												Sub CreateDataBase
+												Dim x
+												if databaseType=0 then
+												SET x=Server.CreateObject("ADOX.Catalog"):x.Create
+												"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" &
+												server.mappath(accessFilePath):SET x=Nothing
+												else
+												set x=server.CreateObject(CONN_OBJ_NAME)
+												x.ConnectionTimeout=3:x.open "Provider=Sqloledb;Data
+												Source="&databaseServer&";Initial Catalog=;User
+												ID="&databaseUser&";Password="&databasePwd&";"
+												x.execute "CREATE DATABASE "&databaseName
+												on error resume next
+												x.execute "ALTER DATABASE "&databaseName&" MODIFY FILE(NAME =
+												"&databaseName&"_log,MAXSIZE = 100 MB)"
+												x.close:SET x=Nothing:err.clear
+												end if
+												End Sub
 
-Function isExistField(ByVal stable,ByVal sCol)
-	isExistField=InStr(GetAllColumnName(stable),","&sCol&",")>0
-End Function
+												Sub CreateTable()
+												if not isExistTable("m_manager") then
+												getConn().execute "create table m_manager(m_id int identity(1,1) not
+												null primary key,m_username varchar(20),m_pwd varchar(50),m_state
+												tinyint default 1,m_logintime datetime ,m_loginip varchar(15),m_level
+												tinyint default 0,m_random varchar(40))"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_manager" & vbcrlf
+												end if
 
-Function isExistIndex(tName,sIndexName)
-	Dim Indexs:SET Indexs=getConn().OpenSchema(12,array(empty,empty,sIndexName,empty,tName)):isExistIndex=Indexs.eof = false:SET Indexs=Nothing
-End Function
+												if not isExistTable("m_data") then
+												getConn().execute "create table m_data(m_id int identity(1,1) not null
+												primary key,m_name varchar(120),m_type int default 0,m_state int default
+												0,m_pic varchar(200),m_hit int default 0,m_digg int default 0,m_actor
+												varchar(255),m_note text,m_des text,m_topic int default 0,m_color
+												varchar(10),m_commend tinyint default 0,m_wrong tinyint default
+												0,m_addtime datetime default "&timeStr&",m_publishyear int default
+												0,m_publisharea varchar(20),m_playdata text,m_downdata text,m_isunion
+												tinyint default 0,m_letter varchar(1),m_keyword text,m_tread int default
+												0,m_director varchar(50),m_lang varchar(30),m_dayhit int default
+												0,m_weekhit int default 0,m_monthhit int default 0,m_enname
+												varchar(120),m_datetime datetime default "&timeStr&",m_recycle tinyint
+												default 0,m_score int default 0)"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_data" & vbcrlf
+												end if
 
-Sub CreateDataBase
-	Dim x
-	if databaseType=0 then
-		SET x=Server.CreateObject("ADOX.Catalog"):x.Create "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & server.mappath(accessFilePath):SET x=Nothing
-	else
-		set x=server.CreateObject(CONN_OBJ_NAME)
-		x.ConnectionTimeout=3:x.open "Provider=Sqloledb;Data Source="&databaseServer&";Initial Catalog=;User ID="&databaseUser&";Password="&databasePwd&";"
-		x.execute "CREATE DATABASE "&databaseName
-		on error resume next
-		x.execute "ALTER DATABASE "&databaseName&" MODIFY FILE(NAME = "&databaseName&"_log,MAXSIZE = 100 MB)"
-		x.close:SET x=Nothing:err.clear
-	end if
-End Sub
+												if not isExistTable("m_news") then
+												getConn().execute "create table m_news(m_id int identity(1,1) not null
+												primary key,m_type int default 0,m_vid int default 0,m_title
+												varchar(255),m_author varchar(80),m_color varchar(20),m_pic
+												varchar(200),m_from varchar(50),m_keyword text,m_outline text,m_content
+												text,m_commend tinyint default 0,m_hit int default 0,m_dayhit int
+												default 0,m_weekhit int default 0,m_monthhit int default 0,m_note
+												tinyint default 0,m_topic int default 0,m_digg int default 0,m_tread int
+												default 0,m_entitle varchar(120),m_letter varchar(1),m_addtime datetime
+												default "&timeStr&",m_datetime datetime default "&timeStr&",m_recycle
+												tinyint default 0,m_score int default 0)"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_news" & vbcrlf
+												end if
 
-Sub CreateTable()
-	if not isExistTable("m_manager") then
-	getConn().execute "create table m_manager(m_id  int identity(1,1) not null  primary key,m_username varchar(20),m_pwd varchar(50),m_state tinyint default 1,m_logintime datetime ,m_loginip varchar(15),m_level tinyint  default 0,m_random varchar(40))"
-	echo "´´½¨Êý¾Ý±í m_manager" & vbcrlf
-	end if
+												if not isExistTable("m_type") then
+												getConn().execute "create table m_type(m_id int identity(1,1) not null
+												primary key,m_name varchar(60),m_enname varchar(40),m_sort int default
+												0,m_upid int default 0,m_hide tinyint default 0,m_template
+												varchar(150),m_unionid varchar(255),m_keyword text,m_description
+												text,m_type tinyint default 0,m_subtemplate varchar(150))"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_type" & vbcrlf
+												end if
 
-	if not isExistTable("m_data") then
-	getConn().execute "create table m_data(m_id  int identity(1,1) not null primary key,m_name varchar(120),m_type int default 0,m_state int default 0,m_pic varchar(200),m_hit int default 0,m_digg int default 0,m_actor varchar(255),m_note text,m_des text,m_topic int default 0,m_color varchar(10),m_commend tinyint default 0,m_wrong tinyint default 0,m_addtime datetime default "&timeStr&",m_publishyear int default 0,m_publisharea varchar(20),m_playdata text,m_downdata text,m_isunion tinyint default 0,m_letter varchar(1),m_keyword text,m_tread int default 0,m_director varchar(50),m_lang varchar(30),m_dayhit int default 0,m_weekhit int default 0,m_monthhit int default 0,m_enname varchar(120),m_datetime datetime default "&timeStr&",m_recycle tinyint default 0,m_score int default 0)"
-	echo "´´½¨Êý¾Ý±í m_data" & vbcrlf
-	end if
+												if not isExistTable("m_link") then
+												getConn().execute "create table m_link(m_id int identity(1,1) not null
+												primary key,m_type varchar(10),m_name varchar(100),m_pic
+												varchar(200),m_url varchar(200),m_des varchar(255),m_sort int default
+												0)"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_link" & vbcrlf
+												end if
 
-	if not isExistTable("m_news") then
-	getConn().execute "create table m_news(m_id int identity(1,1) not null primary key,m_type int default 0,m_vid int default 0,m_title varchar(255),m_author varchar(80),m_color varchar(20),m_pic varchar(200),m_from varchar(50),m_keyword text,m_outline text,m_content text,m_commend tinyint default 0,m_hit int default 0,m_dayhit int default 0,m_weekhit int default 0,m_monthhit int default 0,m_note tinyint default 0,m_topic int default 0,m_digg int default 0,m_tread int default 0,m_entitle varchar(120),m_letter varchar(1),m_addtime datetime default "&timeStr&",m_datetime datetime default "&timeStr&",m_recycle tinyint default 0,m_score int default 0)"
-	echo "´´½¨Êý¾Ý±í m_news" & vbcrlf
-	end if
+												if not isExistTable("m_selflabel") then
+												getConn().execute "create table m_selflabel(m_id int identity(1,1) not
+												null primary key,m_name varchar(40),m_content text,m_des
+												varchar(255),m_addtime datetime default "&timeStr&")"
+												getConn().execute "INSERT INTO m_selflabel
+												(m_name,m_content,m_des)VALUES('areasearch','','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½')"
+												getConn().execute "INSERT INTO m_selflabel
+												(m_name,m_content,m_des)VALUES('yearsearch','','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²é¿´ï¿½ï¿½Ó°')"
+												getConn().execute "INSERT INTO m_selflabel
+												(m_name,m_content,m_des)VALUES('actorsearch','','ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½')"
+												getConn().execute "INSERT INTO m_selflabel
+												(m_name,m_content,m_des)VALUES('nav_bottom_banner','','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½')"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_selflabel" & vbcrlf
+												end if
 
-	if not isExistTable("m_type") then
-	getConn().execute "create table m_type(m_id int identity(1,1) not null primary key,m_name varchar(60),m_enname varchar(40),m_sort int default 0,m_upid int default 0,m_hide tinyint default 0,m_template varchar(150),m_unionid varchar(255),m_keyword text,m_description text,m_type tinyint default 0,m_subtemplate varchar(150))"
-	echo "´´½¨Êý¾Ý±í m_type" & vbcrlf
-	end if
+												if not isExistTable("m_topic") then
+												getConn().execute "create table m_topic(m_id int identity(1,1) not null
+												primary key,m_name varchar(100),m_sort int default 0,m_template
+												varchar(255),m_enname varchar(60),m_pic varchar(255),m_des text)"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_topic" & vbcrlf
+												end if
 
-	if not isExistTable("m_link") then
-	getConn().execute "create table m_link(m_id int identity(1,1) not null primary key,m_type varchar(10),m_name varchar(100),m_pic varchar(200),m_url varchar(200),m_des varchar(255),m_sort int  default 0)"
-	echo "´´½¨Êý¾Ý±í m_link" & vbcrlf
-	end if
+												if not isExistTable("m_ads") then
+												getConn().execute "create table m_ads(m_id int identity(1,1) not null
+												primary key,m_name varchar(100),m_enname varchar(60),m_des
+												varchar(255),m_content text,m_addtime datetime default "&timeStr&")"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_ads" & vbcrlf
+												end if
 
-	if not isExistTable("m_selflabel") then
-	getConn().execute "create table m_selflabel(m_id int identity(1,1) not null primary key,m_name varchar(40),m_content text,m_des varchar(255),m_addtime datetime default "&timeStr&")"
-	getConn().execute "INSERT INTO m_selflabel (m_name,m_content,m_des)VALUES('areasearch','','µØÇøËÑË÷')"
-	getConn().execute "INSERT INTO m_selflabel (m_name,m_content,m_des)VALUES('yearsearch','','°´·¢ÐÐÄê·Ý²é¿´µçÓ°')"
-	getConn().execute "INSERT INTO m_selflabel (m_name,m_content,m_des)VALUES('actorsearch','','ÑÝÔ±Ãû×Ö')"
-	getConn().execute "INSERT INTO m_selflabel (m_name,m_content,m_des)VALUES('nav_bottom_banner','','µ¼º½À¸ÏÂ·½Í¨À¸¹ã¸æ')"
-	echo "´´½¨Êý¾Ý±í m_selflabel" & vbcrlf
-	end if
+												if not isExistTable("m_info") then
+												getConn().execute "create table m_info(m_id int identity(1,1) not null
+												primary key,m_author varchar(80),m_title varchar(255),m_type
+												varchar(20),m_videoid int default 0,m_content text,m_ip
+												varchar(20),m_addtime datetime default "&timeStr&",m_color
+												varchar(20),m_hit int default 0)"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_info" & vbcrlf
+												end if
 
-	if not isExistTable("m_topic") then
-	getConn().execute "create table m_topic(m_id int identity(1,1) not null primary key,m_name varchar(100),m_sort int default 0,m_template varchar(255),m_enname varchar(60),m_pic varchar(255),m_des text)"
-	echo "´´½¨Êý¾Ý±í m_topic" & vbcrlf
-	end if
+												if not isExistTable("m_review") then
+												getConn().execute "create table m_review(m_id int identity(1,1) not null
+												primary key,m_author varchar(80),m_type tinyint default 0,m_videoid int
+												default 0,m_content text,m_ip varchar(20),m_addtime datetime default
+												"&timeStr&",m_reply int default 0,m_agree int default 0,m_anti int
+												default 0,m_pic text,m_vote int default 0,m_check tinyint default 0)"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_review" & vbcrlf
+												end if
 
-	if not isExistTable("m_ads") then
-	getConn().execute "create table m_ads(m_id int identity(1,1) not null primary key,m_name varchar(100),m_enname varchar(60),m_des varchar(255),m_content text,m_addtime datetime default "&timeStr&")"
-	echo "´´½¨Êý¾Ý±í m_ads" & vbcrlf
-	end if
+												if not isExistTable("m_leaveword") then
+												getConn().execute "create table m_leaveword(m_id int identity(1,1) not
+												null primary key,m_replyid int default 0,m_author varchar(80),m_qq
+												varchar(30),m_mail varchar(50),m_content text,m_ip varchar(20),m_addtime
+												datetime default "&timeStr&")"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_leaveword" & vbcrlf
+												end if
 
-	if not isExistTable("m_info") then
-	getConn().execute "create table m_info(m_id int identity(1,1) not null primary key,m_author varchar(80),m_title varchar(255),m_type varchar(20),m_videoid int default 0,m_content text,m_ip varchar(20),m_addtime datetime default "&timeStr&",m_color varchar(20),m_hit int default 0)"
-	echo "´´½¨Êý¾Ý±í m_info" & vbcrlf
-	end if
+												if not isExistTable("m_temp") then
+												getConn().execute "create table m_temp(m_id int identity(1,1) not null
+												primary key,m_name varchar(120),m_type int default 0,m_state int default
+												0,m_pic varchar(200),m_actor varchar(255),m_des text,m_addtime datetime
+												default "&timeStr&",m_playdata text,m_publishyear int default
+												0,m_publisharea varchar(50),m_director varchar(50),m_lang varchar(30))"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ m_temp" & vbcrlf
+												end if
 
-	if not isExistTable("m_review") then
-	getConn().execute "create table m_review(m_id int identity(1,1) not null primary key,m_author varchar(80),m_type tinyint default 0,m_videoid int default 0,m_content text,m_ip varchar(20),m_addtime datetime default "&timeStr&",m_reply int default 0,m_agree int default 0,m_anti int default 0,m_pic text,m_vote int default 0,m_check tinyint default 0)"
-	echo "´´½¨Êý¾Ý±í m_review" & vbcrlf
-	end if
+												if not isExistTable("nodownload") AND databaseType=0 then
+												getConn().execute "create table nodownload(notdown image)"
+												getConn().execute "insert into nodownload (notdown) values ('ï¿½ï¿½ï¿½á¡ï¿½ï¿½')"
+												echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ nodownload" & vbcrlf
+												end if
+												End Sub
 
-	if not isExistTable("m_leaveword") then
-	getConn().execute "create table m_leaveword(m_id int identity(1,1) not null primary key,m_replyid int default 0,m_author varchar(80),m_qq varchar(30),m_mail varchar(50),m_content text,m_ip varchar(20),m_addtime datetime default "&timeStr&")"
-	echo "´´½¨Êý¾Ý±í m_leaveword" & vbcrlf
-	end if
+												Sub CreateField
+												if isExistField("data","m_keyword")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_keyword text":getConn().execute "UPDATE m_data SET
+												m_keyword=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_keyword" & vbcrlf
+												if isExistField("data","m_letter")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_letter varchar(1)":getConn().execute "UPDATE m_data
+												SET m_letter=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_letter" & vbcrlf
+												if isExistField("data","m_enname")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_enname varchar(120)":getConn().execute "UPDATE m_data
+												SET m_enname=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_enname" & vbcrlf
+												if isExistField("data","m_director")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_director varchar(50)":getConn().execute "UPDATE
+												m_data SET m_director=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_director" & vbcrlf
+												if isExistField("data","m_lang")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_lang varchar(30)":getConn().execute "UPDATE m_data
+												SET m_lang=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_lang" & vbcrlf
+												if isExistField("data","m_tread")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_tread int default 0":getConn().execute "UPDATE m_data
+												SET m_tread=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_tread" & vbcrlf
+												if isExistField("data","m_dayhit")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_dayhit int default 0":getConn().execute "UPDATE
+												m_data SET m_dayhit=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_dayhit" & vbcrlf
+												if isExistField("data","m_weekhit")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_weekhit int default 0":getConn().execute "UPDATE
+												m_data SET m_weekhit=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_weekhit" & vbcrlf
+												if isExistField("data","m_monthhit")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_monthhit int default 0":getConn().execute "UPDATE
+												m_data SET m_monthhit=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_monthhit" & vbcrlf
+												if isExistField("data","m_datetime")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_datetime datetime default
+												"&timeStr&"":getConn().execute "UPDATE m_data SET
+												m_datetime=m_addtime":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_datetime" & vbcrlf
+												if isExistField("data","m_recycle")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_recycle tinyint default 0":getConn().execute "UPDATE
+												m_data SET m_recycle=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_recycle" & vbcrlf
+												if isExistField("data","m_score")=false then getConn().execute "ALTER
+												TABLE m_data ADD m_score int default 0":getConn().execute "UPDATE m_data
+												SET m_score=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_data.m_score" & vbcrlf
 
-	if not isExistTable("m_temp") then
-	getConn().execute "create table m_temp(m_id int identity(1,1) not null primary key,m_name varchar(120),m_type int default 0,m_state int default 0,m_pic varchar(200),m_actor varchar(255),m_des text,m_addtime datetime default "&timeStr&",m_playdata text,m_publishyear int default 0,m_publisharea varchar(50),m_director varchar(50),m_lang varchar(30))"
-	echo "´´½¨Êý¾Ý±í m_temp" & vbcrlf
-	end if
+												if isExistField("temp","m_director")=false then getConn().execute "ALTER
+												TABLE m_temp ADD m_director varchar(50)":getConn().execute "UPDATE
+												m_temp SET m_director=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_temp.m_director" & vbcrlf
+												if isExistField("temp","m_lang")=false then getConn().execute "ALTER
+												TABLE m_temp ADD m_lang varchar(30)":getConn().execute "UPDATE m_temp
+												SET m_lang=''":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_temp.m_lang" & vbcrlf
 
-	if not isExistTable("nodownload") AND databaseType=0 then
-		getConn().execute "create table nodownload(notdown image)"
-		getConn().execute "insert into nodownload (notdown) values ('©àšá¡©à')"
-		echo "´´½¨Êý¾Ý±í nodownload" & vbcrlf
-	end if
-End Sub
+												if isExistField("type","m_type")=false then getConn().execute "ALTER
+												TABLE m_type ADD m_type tinyint default 0":getConn().execute "UPDATE
+												m_type SET m_type=0":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_type.m_type" & vbcrlf
+												if isExistField("type","m_keyword")=false then getConn().execute "ALTER
+												TABLE m_type ADD m_keyword text":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_type.m_keyword" &
+												vbcrlf
+												if isExistField("type","m_description")=false then getConn().execute
+												"ALTER TABLE m_type ADD m_description text":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+												m_type.m_description" & vbcrlf
+												if isExistField("type","m_subtemplate")=false then getConn().execute
+												"ALTER TABLE m_type ADD m_subtemplate varchar(150)":getConn().execute
+												"UPDATE m_type SET m_subtemplate='content.html' WHERE
+												m_type=0":getConn().execute "UPDATE m_type SET m_subtemplate='news.html'
+												WHERE m_type=1":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_type.m_subtemplate" & vbcrlf
 
-Sub CreateField
-	if isExistField("data","m_keyword")=false then getConn().execute "ALTER TABLE m_data ADD m_keyword text":getConn().execute "UPDATE m_data SET m_keyword=''":echo "ÐÂÔö×Ö¶Î m_data.m_keyword" & vbcrlf
-	if isExistField("data","m_letter")=false then getConn().execute "ALTER TABLE m_data ADD m_letter varchar(1)":getConn().execute "UPDATE m_data SET m_letter=''":echo "ÐÂÔö×Ö¶Î m_data.m_letter" & vbcrlf
-	if isExistField("data","m_enname")=false then getConn().execute "ALTER TABLE m_data ADD m_enname varchar(120)":getConn().execute "UPDATE m_data SET m_enname=''":echo "ÐÂÔö×Ö¶Î m_data.m_enname" & vbcrlf
-	if isExistField("data","m_director")=false then getConn().execute "ALTER TABLE m_data ADD m_director varchar(50)":getConn().execute "UPDATE m_data SET m_director=''":echo "ÐÂÔö×Ö¶Î m_data.m_director" & vbcrlf
-	if isExistField("data","m_lang")=false then getConn().execute "ALTER TABLE m_data ADD m_lang varchar(30)":getConn().execute "UPDATE m_data SET m_lang=''":echo "ÐÂÔö×Ö¶Î m_data.m_lang" & vbcrlf
-	if isExistField("data","m_tread")=false then getConn().execute "ALTER TABLE m_data ADD m_tread int default 0":getConn().execute "UPDATE m_data SET m_tread=0":echo "ÐÂÔö×Ö¶Î m_data.m_tread" & vbcrlf
-	if isExistField("data","m_dayhit")=false then getConn().execute "ALTER TABLE m_data ADD m_dayhit int default 0":getConn().execute "UPDATE m_data SET m_dayhit=0":echo "ÐÂÔö×Ö¶Î m_data.m_dayhit" & vbcrlf
-	if isExistField("data","m_weekhit")=false then getConn().execute "ALTER TABLE m_data ADD m_weekhit int default 0":getConn().execute "UPDATE m_data SET m_weekhit=0":echo "ÐÂÔö×Ö¶Î m_data.m_weekhit" & vbcrlf
-	if isExistField("data","m_monthhit")=false then getConn().execute "ALTER TABLE m_data ADD m_monthhit int default 0":getConn().execute "UPDATE m_data SET m_monthhit=0":echo "ÐÂÔö×Ö¶Î m_data.m_monthhit" & vbcrlf
-	if isExistField("data","m_datetime")=false then getConn().execute "ALTER TABLE m_data ADD m_datetime datetime default "&timeStr&"":getConn().execute "UPDATE m_data SET m_datetime=m_addtime":echo "ÐÂÔö×Ö¶Î m_data.m_datetime" & vbcrlf
-	if isExistField("data","m_recycle")=false then getConn().execute "ALTER TABLE m_data ADD m_recycle tinyint default 0":getConn().execute "UPDATE m_data SET m_recycle=0":echo "ÐÂÔö×Ö¶Î m_data.m_recycle" & vbcrlf
-	if isExistField("data","m_score")=false then getConn().execute "ALTER TABLE m_data ADD m_score int default 0":getConn().execute "UPDATE m_data SET m_score=0":echo "ÐÂÔö×Ö¶Î m_data.m_score" & vbcrlf
+												if isExistField("info","m_hit")=false then getConn().execute "ALTER
+												TABLE m_info ADD m_hit int default 0":getConn().execute "UPDATE m_info
+												SET m_hit =0 where m_type='news'":echo "ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ m_info.m_hit" & vbcrlf
+												End Sub
 
-	if isExistField("temp","m_director")=false then getConn().execute "ALTER TABLE m_temp ADD m_director varchar(50)":getConn().execute "UPDATE m_temp SET m_director=''":echo "ÐÂÔö×Ö¶Î m_temp.m_director" & vbcrlf
-	if isExistField("temp","m_lang")=false then getConn().execute "ALTER TABLE m_temp ADD m_lang varchar(30)":getConn().execute "UPDATE m_temp SET m_lang=''":echo "ÐÂÔö×Ö¶Î m_temp.m_lang" & vbcrlf
+												Sub CreateIndexs
+												if Not isExistIndex("m_data","m_type") then getConn().execute "CREATE
+												INDEX m_type ON m_data (m_type)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_data.m_type" & vbcrlf
+												if Not isExistIndex("m_data","m_topic") then getConn().execute "CREATE
+												INDEX m_topic ON m_data (m_topic)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_data.m_topic" &
+												vbcrlf
+												if Not isExistIndex("m_data","m_commend") then getConn().execute "CREATE
+												INDEX m_commend ON m_data (m_commend)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_data.m_commend"
+												& vbcrlf
+												if Not isExistIndex("m_data","m_wrong") then getConn().execute "CREATE
+												INDEX m_wrong ON m_data (m_wrong)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_data.m_wrong" &
+												vbcrlf
+												if Not isExistIndex("m_data","m_letter") then getConn().execute "CREATE
+												INDEX m_letter ON m_data (m_letter)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_data.m_letter" &
+												vbcrlf
+												if Not isExistIndex("m_data","m_recycle") then getConn().execute "CREATE
+												INDEX m_recycle ON m_data (m_recycle)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_data.m_recycle"
+												& vbcrlf
 
-	if isExistField("type","m_type")=false then getConn().execute "ALTER TABLE m_type ADD m_type tinyint default 0":getConn().execute "UPDATE m_type SET m_type=0":echo "ÐÂÔö×Ö¶Î m_type.m_type" & vbcrlf
-	if isExistField("type","m_keyword")=false then getConn().execute "ALTER TABLE m_type ADD m_keyword text":echo "ÐÂÔö×Ö¶Î m_type.m_keyword" & vbcrlf
-	if isExistField("type","m_description")=false then getConn().execute "ALTER TABLE m_type ADD m_description text":echo "ÐÂÔö×Ö¶Î m_type.m_description" & vbcrlf
-	if isExistField("type","m_subtemplate")=false then getConn().execute "ALTER TABLE m_type ADD m_subtemplate varchar(150)":getConn().execute "UPDATE m_type SET m_subtemplate='content.html' WHERE m_type=0":getConn().execute "UPDATE m_type SET m_subtemplate='news.html' WHERE m_type=1":echo "ÐÂÔö×Ö¶Î m_type.m_subtemplate" & vbcrlf
+												if Not isExistIndex("m_news","m_type") then getConn().execute "CREATE
+												INDEX m_type ON m_news (m_type)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_news.m_type" & vbcrlf
+												if Not isExistIndex("m_news","m_vid") then getConn().execute "CREATE
+												INDEX m_vid ON m_news (m_vid)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_news.m_vid" & vbcrlf
+												if Not isExistIndex("m_news","m_topic") then getConn().execute "CREATE
+												INDEX m_topic ON m_news (m_topic)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_news.m_topic" &
+												vbcrlf
+												if Not isExistIndex("m_news","m_commend") then getConn().execute "CREATE
+												INDEX m_commend ON m_news (m_commend)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_news.m_commend"
+												& vbcrlf
+												if Not isExistIndex("m_news","m_letter") then getConn().execute "CREATE
+												INDEX m_letter ON m_news (m_letter)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_news.m_letter" &
+												vbcrlf
+												if Not isExistIndex("m_news","m_recycle") then getConn().execute "CREATE
+												INDEX m_recycle ON m_news (m_recycle)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_news.m_recycle"
+												& vbcrlf
 
-	if isExistField("info","m_hit")=false then getConn().execute "ALTER TABLE m_info ADD m_hit int default 0":getConn().execute "UPDATE m_info SET m_hit =0 where m_type='news'":echo "ÐÂÔö×Ö¶Î m_info.m_hit" & vbcrlf
-End Sub
+												if Not isExistIndex("m_review","m_type") then getConn().execute "CREATE
+												INDEX m_type ON m_review (m_type)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_review.m_type" &
+												vbcrlf
+												if Not isExistIndex("m_review","m_videoid") then getConn().execute
+												"CREATE INDEX m_videoid ON m_review (m_videoid)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+												m_review.m_videoid" & vbcrlf
+												if Not isExistIndex("m_review","m_reply") then getConn().execute "CREATE
+												INDEX m_reply ON m_review (m_reply)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_review.m_reply" &
+												vbcrlf
 
-Sub CreateIndexs
-	if Not isExistIndex("m_data","m_type") then getConn().execute "CREATE INDEX m_type ON m_data (m_type)":echo "´´½¨Ë÷Òý m_data.m_type" & vbcrlf
-	if Not isExistIndex("m_data","m_topic") then getConn().execute "CREATE INDEX m_topic ON m_data (m_topic)":echo "´´½¨Ë÷Òý m_data.m_topic" & vbcrlf
-	if Not isExistIndex("m_data","m_commend") then getConn().execute "CREATE INDEX m_commend ON m_data (m_commend)":echo "´´½¨Ë÷Òý m_data.m_commend" & vbcrlf
-	if Not isExistIndex("m_data","m_wrong") then getConn().execute "CREATE INDEX m_wrong ON m_data (m_wrong)":echo "´´½¨Ë÷Òý m_data.m_wrong" & vbcrlf
-	if Not isExistIndex("m_data","m_letter") then getConn().execute "CREATE INDEX m_letter ON m_data (m_letter)":echo "´´½¨Ë÷Òý m_data.m_letter" & vbcrlf
-	if Not isExistIndex("m_data","m_recycle") then getConn().execute "CREATE INDEX m_recycle ON m_data (m_recycle)":echo "´´½¨Ë÷Òý m_data.m_recycle" & vbcrlf
+												if Not isExistIndex("m_info","m_videoid") then getConn().execute "CREATE
+												INDEX m_videoid ON m_info (m_videoid)":echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_info.m_videoid"
+												& vbcrlf
+												End Sub
 
-	if Not isExistIndex("m_news","m_type") then getConn().execute "CREATE INDEX m_type ON m_news (m_type)":echo "´´½¨Ë÷Òý m_news.m_type" & vbcrlf
-	if Not isExistIndex("m_news","m_vid") then getConn().execute "CREATE INDEX m_vid ON m_news (m_vid)":echo "´´½¨Ë÷Òý m_news.m_vid" & vbcrlf
-	if Not isExistIndex("m_news","m_topic") then getConn().execute "CREATE INDEX m_topic ON m_news (m_topic)":echo "´´½¨Ë÷Òý m_news.m_topic" & vbcrlf
-	if Not isExistIndex("m_news","m_commend") then getConn().execute "CREATE INDEX m_commend ON m_news (m_commend)":echo "´´½¨Ë÷Òý m_news.m_commend" & vbcrlf
-	if Not isExistIndex("m_news","m_letter") then getConn().execute "CREATE INDEX m_letter ON m_news (m_letter)":echo "´´½¨Ë÷Òý m_news.m_letter" & vbcrlf
-	if Not isExistIndex("m_news","m_recycle") then getConn().execute "CREATE INDEX m_recycle ON m_news (m_recycle)":echo "´´½¨Ë÷Òý m_news.m_recycle" & vbcrlf
-
-	if Not isExistIndex("m_review","m_type") then getConn().execute "CREATE INDEX m_type ON m_review (m_type)":echo "´´½¨Ë÷Òý m_review.m_type" & vbcrlf
-	if Not isExistIndex("m_review","m_videoid") then getConn().execute "CREATE INDEX m_videoid ON m_review (m_videoid)":echo "´´½¨Ë÷Òý m_review.m_videoid" & vbcrlf
-	if Not isExistIndex("m_review","m_reply") then getConn().execute "CREATE INDEX m_reply ON m_review (m_reply)":echo "´´½¨Ë÷Òý m_review.m_reply" & vbcrlf
-
-	if Not isExistIndex("m_info","m_videoid") then getConn().execute "CREATE INDEX m_videoid ON m_info (m_videoid)":echo "´´½¨Ë÷Òý m_info.m_videoid" & vbcrlf
-End Sub
-
-Sub DoUPDATA()
-	Dim rs,i,t,ary,conn:SET conn=getConn():SET rs=server.CreateObject(RECORDSET_OBJ_NAME)
-	rs.open "SELECT top 1001 m_id,m_name FROM m_data WHERE m_enname='' OR m_letter=''",conn,1,1
-	if not rs.eof then ary=rs.getRows()
-	rs.close:set rs=nothing
-	if isArray(ary) then
-		go=UBound(ary,2)
-		for i=0 to go
-			t=MoviePinYin(ary(1,i)):echo ary(0,i) & "=" & t &vbcrlf
-			conn.execute "UPDATE m_data SET m_enname='"&t&"',m_letter='"&left(t,1)&"' WHERE m_id="&ary(0,i)
-		next
-	else
-		echo "....................Éý¼¶Íê³É...................." & vbcrlf:go=0
-	end if
-	conn.close
-End Sub
-%>
+												Sub DoUPDATA()
+												Dim rs,i,t,ary,conn:SET conn=getConn():SET
+												rs=server.CreateObject(RECORDSET_OBJ_NAME)
+												rs.open "SELECT top 1001 m_id,m_name FROM m_data WHERE m_enname='' OR
+												m_letter=''",conn,1,1
+												if not rs.eof then ary=rs.getRows()
+												rs.close:set rs=nothing
+												if isArray(ary) then
+												go=UBound(ary,2)
+												for i=0 to go
+												t=MoviePinYin(ary(1,i)):echo ary(0,i) & "=" & t &vbcrlf
+												conn.execute "UPDATE m_data SET
+												m_enname='"&t&"',m_letter='"&left(t,1)&"' WHERE m_id="&ary(0,i)
+												next
+												else
+												echo "....................ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...................." & vbcrlf:go=0
+												end if
+												conn.close
+												End Sub
+												%>
